@@ -20,6 +20,7 @@ class CartResource extends JsonResource
             'user name' => $this->user->name,
             'user_id'=>$this->user_id,
             'products' => CartProductCollection::make($this->products)
+            
         ];
     }
 }

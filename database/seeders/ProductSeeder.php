@@ -39,7 +39,7 @@ class ProductSeeder extends Seeder
 
         for ($i = 1; $i <= 1000; $i++) {
             $products[] = [
-                'name' =>   array_rand($productsName),
+                'name' =>   $productsName[array_rand($productsName)],
                 'description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis enim at lacus bibendum pretium. Vivamus pulvinar ullamcorper viverra.",
                 'category_id' => $categories->random(),
                 'price' => rand(1, 10),
