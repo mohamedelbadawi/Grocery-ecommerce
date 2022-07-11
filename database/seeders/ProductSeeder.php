@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Product;
 use Faker\Factory;
+use Faker\Provider\Lorem;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -16,13 +17,30 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        // $faker = Factory::create();
         $categories = Category::pluck('id');
+        $productsName = [
+            "sugar",
+            "tea",
+            "salt",
+            "spices",
+            "bread",
+            "butter",
+            "milk",
+            "flour",
+            "rice",
+            "pulses",
+            "tomato",
+            "potato",
+            "eggs",
+            "apples",
+            "bananas"
+        ];
 
         for ($i = 1; $i <= 1000; $i++) {
             $products[] = [
-                'name' => $faker->sentence(2, true),
-                'description' => $faker->paragraph,
+                'name' =>   array_rand($productsName),
+                'description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis enim at lacus bibendum pretium. Vivamus pulvinar ullamcorper viverra.",
                 'category_id' => $categories->random(),
                 'price' => rand(1, 10),
                 'stock' => rand(1, 50),

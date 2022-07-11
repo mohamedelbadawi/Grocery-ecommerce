@@ -16,15 +16,15 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        // $faker = Factory::create();
         $users = User::all()->pluck('id');
         for ($i = 0; $i < 5; $i++) {
             Address::create([
-                'city' => $faker->city,
-                'street' => $faker->address,
-                'building' => $faker->buildingNumber(),
-                'code' => $faker->countryCode(),
-                'user_id' => $faker->randomElement($users)
+                'city' => "Hurghada",
+                'street' => "Eldahar",
+                'building' => rand(1, 100),
+                'code' => "94483",
+                'user_id' => $users->random()
             ]);
         }
     }
