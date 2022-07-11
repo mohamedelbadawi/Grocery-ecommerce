@@ -29,4 +29,8 @@ class Product extends Model
         }
         return ($this->rates->sum('star_rate') / $this->rates->count());
     }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }
