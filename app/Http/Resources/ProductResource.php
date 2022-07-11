@@ -23,6 +23,7 @@ class ProductResource extends JsonResource
             'stock' => $this->stock,
             'category' => Category::findOrFail($this->category_id)->name,
             'status' => $this->status,
+            'rate'=>$this->totalRate(),
         ];
     }
 }

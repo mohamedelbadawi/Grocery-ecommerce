@@ -18,4 +18,15 @@ class Product extends Model
     {
         return $this->hasOne(Cart::class);
     }
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
+    public function totalRate()
+    {
+        if ($this->rates->count() == 0) {
+            return 0;
+        }
+        return ($this->rates->sum('star_rate') / $this->rates->count());
+    }
 }

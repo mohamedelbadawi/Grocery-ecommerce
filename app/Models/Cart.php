@@ -18,4 +18,12 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function total()
+    {
+        $total = 0;
+        foreach ($this->products as $product) {
+            $total += $product->getSubtotal();
+        }
+        return $total;
+    }
 }

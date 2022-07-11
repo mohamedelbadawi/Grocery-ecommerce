@@ -8,6 +8,7 @@ use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\OrderController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('address/add', [AddressController::class, 'addAddress']);
     Route::get('cart/total', [CartController::class, 'getTotal']);
     Route::post('user/password/update', [AuthController::class, 'updatePassword']);
+    Route::post('product/{id}/rate', [ProductController::class, 'rateProduct']);
+    Route::get('checkout', [OrderController::class, 'checkout']);
 });
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('products/product/{id}', [ProductController::class, 'product']);
