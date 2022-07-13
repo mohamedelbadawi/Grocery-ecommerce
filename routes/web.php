@@ -19,14 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Auth::routes();
 
 Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('logout/', [AdminLoginController::class, 'logout'])->name('admin.logout');
-    Route::get('/', [AdminController::class,'index'])->name('admin.dashboard');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
