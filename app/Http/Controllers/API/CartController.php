@@ -37,16 +37,7 @@ class CartController extends Controller
         CartProduct::query()->where('cart_id', $cartId)->delete();
         return response()->json(['Message' => 'Cleared succesfully']);
     }
-    public function getTotal()
-    {
-        $total = 0;
-        $cart = Auth::user()->cart;
-        $products = $cart->products;
-        foreach ($products as $product) {
-            $total += $product->getSubtotal();
-        }
-        return response()->json(['total' => $total]);
-    }
+   
 
     public function removeProduct(Request $request)
     {

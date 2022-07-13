@@ -15,9 +15,9 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Vegetables', 'image' => 'categories/vegetables.png','created_at'=>now()]);
-        Category::create(['name' => 'Fruits', 'image' => 'categories/fruits.png','created_at'=>now()]);
-        Category::create(['name' => 'Meat and chicken', 'image' => 'categories/meat.png','created_at'=>now()]);
-        Category::create(['name' => 'Diary', 'image' => 'categories/diary.png','created_at'=>now()]);
+        Category::create(['name' => 'Vegetables', 'image' => 'assets/categories/vegetables.png','created_at'=>now()]);
+        Category::create(['name' => 'Fruits', 'image' => 'assets/categories/fruits.png','created_at'=>now()]);
+        Category::create(['name' => 'Meat and chicken', 'image' => 'assets/categories/meat.png','created_at'=>now()]);
+        Category::create(['name' => 'Diary', 'image' => 'assets/categories/diary.png','created_at'=>now()]);
     }
 }

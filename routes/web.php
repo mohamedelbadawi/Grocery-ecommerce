@@ -28,3 +28,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class,'index'])->name('admin.dashboard');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

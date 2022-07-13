@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AddressController;
+use App\Http\Controllers\API\AddressController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('cart/clear', [CartController::class, 'clearCart']);
     Route::get('address', [AddressController::class, 'getUseraddresses']);
     Route::post('address/add', [AddressController::class, 'addAddress']);
-    Route::get('cart/total', [CartController::class, 'getTotal']);
+
     Route::post('user/password/update', [AuthController::class, 'updatePassword']);
     Route::post('product/{id}/rate', [ProductController::class, 'rateProduct']);
     Route::get('checkout', [OrderController::class, 'checkout']);
