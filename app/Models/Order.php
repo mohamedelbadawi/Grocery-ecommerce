@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    public const STATUS = ['pending', 'compeleted', 'canceled'];
     public function products()
     {
         return $this->hasMany(OrderProduct::class);
@@ -21,5 +21,13 @@ class Order extends Model
     public function address()
     {
         return $this->belongsTo(Address::class);
+    }
+    public function total()
+    {
+        $total = 0;
+        foreach ($this->products as $product) {
+            $total += $product->getSubtotal();
+        }
+        return $total;
     }
 }

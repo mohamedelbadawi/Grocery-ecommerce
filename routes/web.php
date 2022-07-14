@@ -52,5 +52,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/carts/free/{cart}', [CartController::class, 'freeCart'])->name('admin.cart.free');
     // Order
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
+    Route::post('/orders/update/{order}', [OrderController::class, 'update'])->name('admin.order.update');
+    Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('admin.order.edit');
+    Route::get('/orders/update/quantity/{product}', [OrderController::class, 'updateQuantity'])->name('admin.order.update.quantity');
+    Route::get('/orders/update/delete/{product}', [OrderController::class, 'deleteProduct'])->name('admin.order.product.delete');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

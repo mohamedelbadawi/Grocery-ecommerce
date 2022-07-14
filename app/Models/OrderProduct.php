@@ -18,4 +18,8 @@ class OrderProduct extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function getSubtotal()
+    {
+        return ($this->product->price*$this->quantity);
+    }
 }

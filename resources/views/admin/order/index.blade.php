@@ -6,8 +6,8 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Products</h6>
-            <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a>
+            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+            {{-- <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -45,7 +45,7 @@
                                     {{ $order->status }}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm mr-2"
-                                        href="{{ route('admin.product.edit', $order->id) }}">Edit</a>
+                                        href="{{ route('admin.order.edit', $order->id) }}">Edit</a>
 
                                     <a class="btn btn-danger btn-sm mr-2"
                                         href="{{ route('admin.product.delete', $order->id) }}">delete</a>
