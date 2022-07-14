@@ -1,22 +1,61 @@
-<aside class="left-sidebar" data-sidebarbg="skin6">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <!-- User Profile-->
-                <li class="sidebar-item pt-2">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
-                        aria-expanded="false">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span class="hide-menu">Categories</span>
-                    </a>
-                </li>
-                
-            </ul>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        </nav>
-        <!-- End Sidebar navigation -->
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Admin <sup>{{ auth('admin')->user()->name }} </sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.category') }}">
+            <i class="fa-solid fa-c"></i>
+            <span>Categories</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.product') }}">
+            <i class="fa-brands fa-product-hunt"></i>
+            <span>Products</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.cart') }}">
+            <i class="fa-solid fa-cart-shopping"></i> <span>Carts</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.order') }}">
+            <i class="fa-solid fa-house"></i>
+            <span>Orders</span></a>
+    </li>
+
+
+
+
+
+
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-    <!-- End Sidebar scroll-->
-</aside>
+
+</ul>

@@ -10,14 +10,11 @@ class Product extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function Category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
-    public function product()
-    {
-        return $this->hasOne(Cart::class);
-    }
+
     public function rates()
     {
         return $this->hasMany(Rate::class);

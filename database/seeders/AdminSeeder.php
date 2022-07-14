@@ -14,6 +14,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create(['name' => "Mohamed", 'email' => 'mohamed@gmail.com', 'password' => bcrypt('123456789')]);
+        Admin::create(['name' => "Mohamed", 'email' => 'mohamed@gmail.com', 'password' => bcrypt('123456789'),'image'=>"assets/admins/undraw_profile.svg"]);
     }
 }
