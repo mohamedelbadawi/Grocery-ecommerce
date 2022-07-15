@@ -30,4 +30,8 @@ class Order extends Model
         }
         return $total;
     }
+    public function date()
+    {
+        return $this->created_at->diffForHumans();
+    }
 }

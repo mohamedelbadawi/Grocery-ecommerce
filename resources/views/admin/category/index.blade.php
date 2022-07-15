@@ -50,6 +50,7 @@
                 paging: true,
                 ordering: true,
                 info: true,
+                "pageLength": 10,
                 dom: 'Bfrtip',
                 buttons: [{
                         extend: 'pdf',
@@ -62,6 +63,19 @@
                     {
                         extend: 'csv',
                         className: 'btn btn-primary'
+                    },
+                    {
+
+                        extend: 'copy',
+                        text: 'Copy current page',
+                        className: 'btn btn-primary',
+                        messageTop: 'Done',
+                        messageBottom: 'Done',
+                        exportOptions: {
+                            modifier: {
+                                page: 'current'
+                            }
+                        }
                     }
 
                 ]

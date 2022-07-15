@@ -43,6 +43,17 @@
             <span>Orders</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.address') }}">
+            <i class="fa-solid fa-house"></i>
+            <span>Addresses</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.user') }}">
+            <i class="fa-solid fa-person"></i>
+            <span>Users</span></a>
+    </li>
+
 
 
 

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Backend\AddressController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\CartController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,5 +58,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('admin.order.edit');
     Route::get('/orders/update/quantity/{product}', [OrderController::class, 'updateQuantity'])->name('admin.order.update.quantity');
     Route::get('/orders/update/delete/{product}', [OrderController::class, 'deleteProduct'])->name('admin.order.product.delete');
+    // Address
+    Route::get('/addresses', [AddressController::class, 'index'])->name('admin.address');
+    // user
+    Route::get('users', [UserController::class, 'index'])->name('admin.user');
+    Route::get('users/{user}/orders', [UserController::class, 'userOrders'])->name('admin.user.orders');
+    Route::get('users/delete/{user}/', [UserController::class, 'delete'])->name('admin.user.delete');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

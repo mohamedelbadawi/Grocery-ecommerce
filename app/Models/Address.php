@@ -9,8 +9,12 @@ class Address extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function order()
+    public function orders()
     {
         return $this->belongsTo(Order::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

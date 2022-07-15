@@ -9,7 +9,7 @@
             edit Order
         </div>
         <div class="card-body bg-white rounded ">
-            <form action="{{ route('admin.order.update',$order->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.order.update', $order->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">order id</label>
@@ -71,7 +71,8 @@
                                                     data-target="#Modal-{{ $product->id }}">Edit</a>
 
                                                 <a class="btn btn-danger btn-sm mr-2"
-                                                    href="{{ route('admin.product.delete', $product->id) }}" data-toggle="modal"
+                                                    href="{{ route('admin.product.delete', $product->id) }}"
+                                                    data-toggle="modal"
                                                     data-target="#deleteModal-{{ $product->id }}">delete</a>
                                             </td>
                                         </tr>
@@ -143,7 +144,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">delete quantity</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">delete {{ $product->name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -151,7 +152,7 @@
                     <div class="modal-body">
                         <form action="{{ route('admin.order.product.delete', $product->id) }}" method="GET">
                             @csrf
-                            <h4>Are you want to delete {{$product->product->name}} ?</h4>
+                            <h4>Are you want to delete {{ $product->product->name }} ?</h4>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Delete </button>
@@ -163,8 +164,5 @@
                 </div>
             </div>
         </div>
-
-
-
     @endforeach
 @endsection
