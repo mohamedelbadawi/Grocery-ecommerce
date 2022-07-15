@@ -10,8 +10,8 @@
             {{-- <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a> --}}
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div >
+                <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>User</th>
@@ -57,5 +57,30 @@
             </div>
         </div>
     </div>
-    {{ $orders->links() }}
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'pdf',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-primary'
+                    }
+
+                ]
+            });
+        });
+    </script>
 @endsection

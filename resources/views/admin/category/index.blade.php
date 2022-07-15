@@ -9,8 +9,8 @@
             <a  class="btn btn-primary" href="{{route('admin.category.create')}}" > Add Category</a>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div >
+                <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -42,4 +42,30 @@
         </div>
         </div>
         {{ $categories->links() }}
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'pdf',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-primary'
+                    }
+
+                ]
+            });
+        });
+    </script>
 @endsection

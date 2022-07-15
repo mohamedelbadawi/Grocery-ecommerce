@@ -3,6 +3,7 @@
     Products
 @endsection
 
+
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
@@ -10,8 +11,8 @@
             <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <div>
+                <table class="table table-striped table-bordered" cellspacing="0" id="datatable">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -33,7 +34,8 @@
                                 <td>{{ $product->category->name }}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td class="{{$product->status ? 'text-success': 'text-danger' }}">{{ $product->status ? 'Active' : 'InActive' }}</td>
+                                <td class="{{ $product->status ? 'text-success' : 'text-danger' }}">
+                                    {{ $product->status ? 'Active' : 'InActive' }}</td>
                                 <td>
                                     <a class="btn btn-primary mr-2"
                                         href="{{ route('admin.product.edit', $product->id) }}">Edit</a>
@@ -48,5 +50,31 @@
             </div>
         </div>
     </div>
-    {{ $products->links() }}
+    {{-- {{ $products->links() }} --}}
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'pdf',
+                        className: 'btn btn-danger'
+                    },
+                    {
+                        extend: 'excel',
+                        className: 'btn btn-success'
+                    },
+                    {
+                        extend: 'csv',
+                        className: 'btn btn-primary'
+                    }
+
+                ]
+            });
+        });
+    </script>
 @endsection

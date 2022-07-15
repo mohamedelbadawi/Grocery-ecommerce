@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Order::with(['user', 'products'])->paginate(10);
+            $orders = Order::with(['user', 'products'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error ');
         }

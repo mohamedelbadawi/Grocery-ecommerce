@@ -13,7 +13,7 @@ class CartController extends Controller
     {
         try {
             // dd(Cart::first()->products);
-            $carts = Cart::with(['user', 'products.product'])->paginate(10);
+            $carts = Cart::with(['user', 'products.product'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'something error');
         }
