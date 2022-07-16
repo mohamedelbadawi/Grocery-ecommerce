@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\CartController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\UserController;
 use App\Models\Product;
@@ -55,6 +56,7 @@ Route::prefix('admin')->group(function () {
     // Order
     Route::get('/orders', [OrderController::class, 'index'])->name('admin.order');
     Route::post('/orders/update/{order}', [OrderController::class, 'update'])->name('admin.order.update');
+    Route::get('/orders/delete/{order}', [OrderController::class, 'delete'])->name('admin.order.delete');
     Route::get('/orders/edit/{order}', [OrderController::class, 'edit'])->name('admin.order.edit');
     Route::get('/orders/update/quantity/{product}', [OrderController::class, 'updateQuantity'])->name('admin.order.update.quantity');
     Route::get('/orders/update/delete/{product}', [OrderController::class, 'deleteProduct'])->name('admin.order.product.delete');
@@ -64,5 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index'])->name('admin.user');
     Route::get('users/{user}/orders', [UserController::class, 'userOrders'])->name('admin.user.orders');
     Route::get('users/delete/{user}/', [UserController::class, 'delete'])->name('admin.user.delete');
+    // notification
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.notification');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

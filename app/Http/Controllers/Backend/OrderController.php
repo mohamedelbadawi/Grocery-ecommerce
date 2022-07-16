@@ -65,4 +65,14 @@ class OrderController extends Controller
         }
         return redirect()->route('admin.order')->with('success', 'updated successfully');
     }
+
+    public function delete(Order $order)
+    {
+        try {
+            $order->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Something error');
+        }
+        return redirect()->route('admin.order')->with('success', 'Order deleted successfully');
+    }
 }

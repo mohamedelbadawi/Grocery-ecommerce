@@ -48,7 +48,7 @@
                                         href="{{ route('admin.order.edit', $order->id) }}">Edit</a>
 
                                     <a class="btn btn-danger btn-sm mr-2"
-                                        href="{{ route('admin.product.delete', $order->id) }}">delete</a>
+                                        href="{{ route('admin.order.delete', $order->id) }}">delete</a>
                                 </td>
                             </tr>
                         @endforeach
