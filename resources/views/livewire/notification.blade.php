@@ -10,9 +10,9 @@
         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">
-                Alerts Center
+                Notifications Center
             </h6>
-            @foreach ($notifications->slice(0, 5) as $notification)
+            @forelse ($notifications->slice(0, 5) as $notification)
                 <button class="dropdown-item d-flex align-items-center"
                     wire:click="showNotification('{{ $notification->id }}','{{ $notification->data['order_id'] }}')">
                     <div class="mr-3">
@@ -30,7 +30,10 @@
                             {{ $notification->data['total'] }} EGP</span>
                     </div>
                 </button>
-            @endforeach
+            @empty
+                <p class="text-center m-2">No Unread notifications</p>
+            @endforelse
+
 
             <a class="dropdown-item text-center small text-gray-500" href="{{ route('admin.notification') }}">Show All
                 Alerts</a>

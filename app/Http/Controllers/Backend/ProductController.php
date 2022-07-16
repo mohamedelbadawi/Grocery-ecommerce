@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\storeProduct;
+use App\Jobs\ProductsStockJob;
 use App\Models\Category;
 use App\Models\Product;
 use App\traits\ImageHelper;
@@ -37,5 +38,15 @@ class ProductController extends Controller
             return redirect()->route('admin.products')->with('error', 'something error');
         }
         return redirect()->route('admin.product')->with('success', 'Product deleted successfully');
+    }
+
+    public function getReportOfProductsLowStock()
+    {
+        try {
+            ProductsStockJob::dispatch();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'something error');
+        }
+        return redirect()->back()->with('success', 'file is  proccessing');
     }
 }

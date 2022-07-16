@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\OrderNotification as JobsOrderNotification;
+use App\Jobs\OrderNotificationJob;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -32,9 +34,7 @@ class OrderController extends Controller
             'address' => $user->addresses->first()->city,
             'total' => $order->total
         ];
-        // dd($orderData['name']);
-        $admins = Admin::all();
-        Notification::send($admins, new OrderNotification($orderData));
+        OrderNotificationJob::dispatch($orderData);
         return response()->json(['Total' => $order->total]);
     }
 }
