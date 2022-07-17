@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-    create Product
+    edit Product
 @endsection
 @section('style')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all"
@@ -11,14 +11,15 @@
 @section('content')
     <div class="col-8 ">
         <div class="card-header">
-            Create Product
+            edit {{ $product->name }}
         </div>
         <div class="card-body bg-white rounded ">
-            <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.update', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Product name</label>
-                    <input type="text" class="form-control" placeholder="product name" name="name">
+                    <input type="text" class="form-control" placeholder="product name" value="{{ $product->name }}"
+                        name="name">
 
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
@@ -26,7 +27,8 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" placeholder="price" name="price">
+                    <input type="number" class="form-control" placeholder="price" value="{{ $product->price }}"
+                        name="price">
 
                     @error('price')
                         <div class="text-danger">{{ $message }}</div>
@@ -34,7 +36,8 @@
                 </div>
                 <div class="form-group">
                     <label for="price">stock</label>
-                    <input type="number" class="form-control" placeholder="stock" name="stock">
+                    <input type="number" class="form-control" placeholder="stock" value="{{ $product->stock }}"
+                        name="stock">
 
                     @error('stock')
                         <div class="text-danger">{{ $message }}</div>
@@ -44,7 +47,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea style="resize: none" name="description" id="" cols="80" rows="10">
-
+                        {{ $product->description }}
                 </textarea>
                     @error('description')
                         <div class="text-danger">{{ $message }}</div>
@@ -55,7 +58,9 @@
                     <label for="category_id">Category</label>
                     <select name="category_id" class="form-control">
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" @if ($category->id == $product->category_id) selected @endif>
+                                {{ $category->name }}
+                            </option>
                         @endforeach
                     </select>
                     @error('category_id')
@@ -66,8 +71,8 @@
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select name="status" class="form-control">
-                        <option value="1">Active</option>
-                        <option value="0">InActive</option>
+                        <option value="1" @if ($product->status == 1) selected @endif>Active</option>
+                        <option value="0" @if ($product->status == 0) selected @endif>InActive</option>
                     </select>
                     @error('status')
                         <div class="text-danger">{{ $message }}</div>
@@ -78,8 +83,8 @@
                     <label for="featured">featured</label>
                     <select name="featured" class="form-control">
 
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
+                        <option value="1" @if ($product->featured == 1) selected @endif>Yes</option>
+                        <option value="0" @if ($product->featured == 0) selected @endif>No</option>
 
                     </select>
                     @error('featured')
@@ -98,7 +103,7 @@
 
 
                 <div class="form-group text-center">
-                    <button class="btn btn-primary mt-3" type="submit">Add</button>
+                    <button class="btn btn-primary mt-3" type="submit">update</button>
                 </div>
 
             </form>
@@ -113,9 +118,15 @@
         $("#images").fileinput({
 
             theme: 'fa',
-
-            uploadUrl: "",
-            removeUrl: "",
+            initialPreviewAsData: true,
+            initialPreviewFileType: 'image',
+            initialPreview: [
+                @if ($product->images()->count() > 0)
+                    @foreach ($product->images as $image)
+                        "{{ asset($image->image) }}",
+                    @endforeach
+                @endif
+            ],
 
             allowedFileExtensions: ['jpg', 'png'],
 
@@ -124,8 +135,22 @@
             maxFileSize: 2000,
 
             maxFilesNum: 5,
-
-
-        });
+            overwriteInitial: false,
+            showCancel: true,
+            showRemove: false,
+            showUpload: false,
+            initialPreviewConfig: [
+                @if ($product->images()->count() > 0)
+                    @foreach ($product->images as $image)
+                        {
+                            url: "{{ route('admin.product.deleteImage', ['id' => $image->id, '_token' => csrf_token()]) }}",
+                            key: {{ $image->id }}
+                        },
+                    @endforeach
+                @endif
+            ]
+        }).on('filesorted', function (event, params) {
+                console.log(params.previewId, params.oldIndex, params.newIndex, params.stack);
+            });;
     </script>
 @endsection

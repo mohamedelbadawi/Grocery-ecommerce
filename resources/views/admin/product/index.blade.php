@@ -8,7 +8,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Products</h6>
-            <a class="btn btn-success" href="{{ route('admin.product.report') }}"> low stock Product report</a>
             <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a>
         </div>
         <div class="card-body">
@@ -27,7 +26,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($products as $product)
+                    @foreach ($products as $product)
                             <tr>
                                 <td><img src="{{ asset($product->images->first()->image) }}" style="width: 60px;"
                                         alt=""></td>

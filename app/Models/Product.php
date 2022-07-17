@@ -19,6 +19,10 @@ class Product extends Model
     {
         return $this->hasMany(Rate::class);
     }
+    // public function firstImagename()
+    // {
+    //     return $this->images()->first()->image;
+    // }
     public function totalRate()
     {
         if ($this->rates->count() == 0) {
