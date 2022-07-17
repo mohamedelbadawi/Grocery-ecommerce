@@ -11,7 +11,7 @@ class AddressController extends Controller
     public function index()
     {
         try {
-            $addresses = Address::with(['user', 'orders'])->get();
+            $addresses = Address::with(['user'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }

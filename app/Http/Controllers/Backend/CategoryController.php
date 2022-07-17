@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Category::paginate(10);
+            $categories = Category::withCount(['products'])->get();
         } catch (Exception $ex) {
             return redirect()->route('admin.dashboard');
         }

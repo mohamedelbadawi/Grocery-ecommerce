@@ -1,12 +1,12 @@
 @extends('admin.layouts.admin')
 @section('title')
-    Orders
+    {{ trans('main.Orders') }}
 @endsection
 
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+            <h6 class="m-0 font-weight-bold text-primary">{{ trans('main.Orders') }}</h6>
             {{-- <a class="btn btn-primary" href="{{ route('admin.product.create') }}"> Add Product</a> --}}
         </div>
         <div class="card-body">
@@ -14,13 +14,13 @@
                 <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>order Id</th>
-                            <th>products</th>
-                            <th>total</th>
-                            <th>address</th>
-                            <th>status</th>
-                            <th>Actions</th>
+                            <th>{{ trans('main.user') }}</th>
+                            <th>{{ trans('main.order Id') }}</th>
+                            <th>{{ trans('main.Products') }}</th>
+                            <th>{{ trans('main.total') }}</th>
+                            <th>{{ trans('main.address') }}</th>
+                            <th>{{ trans('main.status') }}</th>
+                            <th>{{ trans('main.Actions') }}</th>
                         </tr>
                     </thead>
 
@@ -45,10 +45,10 @@
                                     {{ $order->status }}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm mr-2"
-                                        href="{{ route('admin.order.edit', $order->id) }}">Edit</a>
+                                        href="{{ route('admin.order.edit', $order->id) }}">{{ trans('main.Edit') }}</a>
 
                                     <a class="btn btn-danger btn-sm mr-2"
-                                        href="{{ route('admin.order.delete', $order->id) }}">delete</a>
+                                        href="{{ route('admin.order.delete', $order->id) }}">{{ trans('main.Delete') }}</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -83,9 +83,9 @@
 
                         extend: 'copy',
                         text: 'Copy current page',
-                        className :'btn btn-primary',
-                        messageTop:'Done',
-                        messageBottom :'Done',
+                        className: 'btn btn-primary',
+                        messageTop: 'Done',
+                        messageBottom: 'Done',
                         exportOptions: {
                             modifier: {
                                 page: 'current'

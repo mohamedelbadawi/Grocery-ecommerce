@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Order::with(['user', 'products'])->get();
+            $orders = Order::with(['user', 'products.product','address'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error ');
         }

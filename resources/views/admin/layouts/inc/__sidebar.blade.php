@@ -15,7 +15,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>{{ trans('sidebar.Dashboard') }}</span></a>
     </li>
 
 
@@ -23,35 +23,35 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.category') }}">
             <i class="fa-solid fa-c"></i>
-            <span>Categories</span></a>
+            <span>{{ trans('sidebar.Categories') }}</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.product') }}">
             <i class="fa-brands fa-product-hunt"></i>
-            <span>Products</span></a>
+            <span>{{ trans('sidebar.Products') }}</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.cart') }}">
-            <i class="fa-solid fa-cart-shopping"></i> <span>Carts</span></a>
+            <i class="fa-solid fa-cart-shopping"></i> <span>{{ trans('sidebar.Carts') }}</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.order') }}">
             <i class="fa-solid fa-house"></i>
-            <span>Orders</span></a>
+            <span>{{ trans('sidebar.Orders') }}</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.address') }}">
             <i class="fa-solid fa-house"></i>
-            <span>Addresses</span></a>
+            <span>{{ trans('sidebar.Addresses') }}</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.user') }}">
             <i class="fa-solid fa-person"></i>
-            <span>Users</span></a>
+            <span>{{ trans('sidebar.Users') }}</span></a>
     </li>
 
 

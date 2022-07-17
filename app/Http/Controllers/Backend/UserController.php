@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         try {
-            $users = User::with(['orders'])->get();
+            $users = User::withCount(['orders'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }

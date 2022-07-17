@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+@if (App::getLocale() == 'en')
+    <html lang="en" dir="ltr">
+@else
+    <html lang="ar" dir="rtl">
+@endif
 
 <head>
 
@@ -78,9 +82,26 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <livewire:notification />
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <li class="nav-item dropdown no-arrow ">
+                            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{trans('main.Language')}}</span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="langDropdown">
+                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                        {{ $properties['native'] }}</a>
+                                @endforeach
+                            </div>
+
+                        </li>
+                        {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
+                        <livewire:notification />
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -91,6 +112,8 @@
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset(auth('admin')->user()->image) }}">
                             </a>
+
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
@@ -107,6 +130,8 @@
                                     Logout
                                 </a>
                             </div>
+
+
                         </li>
 
                     </ul>
@@ -172,7 +197,8 @@
                 </div>
                 <form action="{{ route('admin.logout') }}" method="get">
 
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                    </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">Logout</button>

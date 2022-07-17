@@ -1,22 +1,22 @@
 @extends('admin.layouts.admin')
 @section('title')
-    Categories
+{{trans('main.Categories')}}
 @endsection
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
-            <a  class="btn btn-primary" href="{{route('admin.category.create')}}" > Add Category</a>
+            <h6 class="m-0 font-weight-bold text-primary">{{trans('main.Categories')}}</h6>
+            <a class="btn btn-primary" href="{{ route('admin.category.create') }}"> {{ trans('main.Add Category') }}</a>
         </div>
         <div class="card-body">
-            <div >
+            <div>
                 <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>name</th>
-                            <th>products count</th>
-                            <th>Actions</th>
+                            <th>{{ trans('main.Image') }}</th>
+                            <th>{{ trans('main.name') }}</th>
+                            <th>{{ trans('main.products count') }}</th>
+                            <th>{{ trans('main.Actions') }}</th>
                         </tr>
                     </thead>
 
@@ -25,14 +25,14 @@
                             <tr>
                                 <td><img src="{{ asset($category->image) }}" style="width: 60px;" alt=""></td>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->products->count() }}</td>
+                                <td>{{ $category->products_count }}</td>
                                 <td>
-                                    <a class="btn btn-success mr-2" href="">view products</a>
+                                    <a class="btn btn-success mr-2" href="">{{trans('main.view products')}}</a>
                                     <a class="btn btn-primary mr-2"
-                                        href="{{ route('admin.category.edit', $category->id) }}">Edit</a>
+                                        href="{{ route('admin.category.edit', $category->id) }}">{{ trans('main.Edit') }}</a>
 
                                     <a class="btn btn-danger mr-2"
-                                        href="{{ route('admin.category.delete', $category->id) }}">delete</a>
+                                        href="{{ route('admin.category.delete', $category->id) }}">{{ trans('main.Delete') }}</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -40,8 +40,7 @@
                 </table>
             </div>
         </div>
-        </div>
-        {{ $categories->links() }}
+    </div>
 @endsection
 @section('script')
     <script>

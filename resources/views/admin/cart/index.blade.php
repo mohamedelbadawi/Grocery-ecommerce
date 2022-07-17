@@ -5,19 +5,19 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Carts</h6>
-           
+            <h6 class="m-0 font-weight-bold text-primary">{{ trans('main.Carts') }}</h6>
+
         </div>
         <div class="card-body">
-            <div >
+            <div>
                 <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>user</th>
-                            <th>Products</th>
-                            <th>count</th>
-                            <th>total</th>
-                            <th>Actions</th>
+                            <th>{{ trans('main.user') }}</th>
+                            <th>{{trans('main.Products')}}</th>
+                            <th>{{trans('main.count')}}</th>
+                            <th>{{trans('main.total')}}</th>
+                            <th>{{trans('main.Actions')}}</th>
                         </tr>
                     </thead>
 
@@ -32,8 +32,8 @@
                                     @endforeach
                                 </td>
 
-                                <td>{{ $cart->products()->count() }}</td>
-                            <td>{{ $cart->total() }}</td>
+                                <td>{{ $cart->products_count }}</td>
+                                <td>{{ $cart->total() }}</td>
                                 <td>
 
                                     <a class="btn btn-danger mr-2" href="{{ route('admin.cart.free', $cart->id) }}">free
