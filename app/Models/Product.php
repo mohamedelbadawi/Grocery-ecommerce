@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
+    public $translatable = ['name','description'];
     protected $guarded = [];
 
     public function category()
@@ -19,10 +21,7 @@ class Product extends Model
     {
         return $this->hasMany(Rate::class);
     }
-    // public function firstImagename()
-    // {
-    //     return $this->images()->first()->image;
-    // }
+
     public function totalRate()
     {
         if ($this->rates->count() == 0) {

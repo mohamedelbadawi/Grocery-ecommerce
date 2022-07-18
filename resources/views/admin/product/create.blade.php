@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-    create Product
+    {{ trans('main.Add Product') }}
 @endsection
 @section('style')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all"
@@ -11,30 +11,41 @@
 @section('content')
     <div class="col-8 ">
         <div class="card-header">
-            Create Product
+            {{ trans('main.Add Product') }}
         </div>
         <div class="card-body bg-white rounded ">
             <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Product name</label>
-                    <input type="text" class="form-control" placeholder="product name" name="name">
+                    <label for="name">{{ trans('main.English Product name') }}</label>
+                    <input type="text" class="form-control" placeholder="{{ trans('main.English Product name') }}"
+                        name="name_en">
+
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="name">{{ trans('main.Arabic Product name') }}</label>
+                    <input type="text" class="form-control" placeholder="{{ trans('main.Arabic Product name') }}"
+                        name="name_ar">
 
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="number" class="form-control" placeholder="price" name="price">
+                    <label for="price">{{ trans('main.price') }}</label>
+                    <input type="number" class="form-control" placeholder="{{ trans('main.price') }}" name="price">
 
                     @error('price')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="price">stock</label>
-                    <input type="number" class="form-control" placeholder="stock" name="stock">
+                    <label for="price">{{ trans('main.stock') }}</label>
+                    <input type="number" class="form-control" placeholder="{{ trans('main.stock') }}" name="stock">
 
                     @error('stock')
                         <div class="text-danger">{{ $message }}</div>
@@ -42,8 +53,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea style="resize: none" name="description" id="" cols="80" rows="10">
+                    <label for="description"> {{ trans('main.English Description') }}</label>
+                    <textarea style="resize: none" name="description_en" id="" cols="80" rows="10">
 
                 </textarea>
                     @error('description')
@@ -52,7 +63,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category_id">Category</label>
+                    <label for="description">{{ trans('main.Arabic Description') }}</label>
+                    <textarea style="resize: none" name="description_ar" id="" cols="80" rows="10">
+
+                </textarea>
+                    @error('description')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="category_id">{{ trans('main.Category') }}</label>
                     <select name="category_id" class="form-control">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -64,10 +85,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="status">Status</label>
+                    <label for="status">{{ trans('main.status') }}</label>
                     <select name="status" class="form-control">
-                        <option value="1">Active</option>
-                        <option value="0">InActive</option>
+                        <option value="1">{{ trans('main.Active') }}</option>
+                        <option value="0">{{ trans('main.InActive') }}</option>
                     </select>
                     @error('status')
                         <div class="text-danger">{{ $message }}</div>
@@ -75,11 +96,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="featured">featured</label>
+                    <label for="featured">{{ trans('main.featured') }}</label>
                     <select name="featured" class="form-control">
 
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
+                        <option value="1">{{ trans('main.Yes') }}</option>
+                        <option value="0">{{ trans('main.No') }}</option>
 
                     </select>
                     @error('featured')
@@ -89,7 +110,7 @@
 
 
                 <div class="form-group">
-                    <label for="images" class="form-label">Images</label>
+                    <label for="images" class="form-label">{{ trans('main.Images') }}</label>
                     <input type="file" id="images" multiple name="images[]" class="form-control">
                     @error('images')
                         <div class="text-danger">{{ $message }}</div>
@@ -98,7 +119,7 @@
 
 
                 <div class="form-group text-center">
-                    <button class="btn btn-primary mt-3" type="submit">Add</button>
+                    <button class="btn btn-primary mt-3" type="submit">{{ trans('main.Add') }}</button>
                 </div>
 
             </form>

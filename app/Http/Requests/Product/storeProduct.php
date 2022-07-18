@@ -25,14 +25,16 @@ class storeProduct extends FormRequest
 
     {
         return [
-            'name' => 'required|string',
+            'name_en' => 'required|string',
+            'name_ar' => 'required|string',
             'category_id' => 'required',
             'stock' => 'required|numeric',
-            'description' => 'required',
-            'images'=>'required',
-            'price'=>'required',
-            'status'=>'required',
-            'featured'=>'required',
+            'description_en' => 'required',
+            'description_ar' => 'required',
+            'images' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+            'featured' => 'required',
         ];
     }
 }

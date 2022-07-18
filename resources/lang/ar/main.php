@@ -5,11 +5,17 @@ return [
 
     'Delete' => 'حذف',
     'Edit' => 'تعديل',
+    'Add' => 'اضافة',
+    'Active' => 'فعال',
+    'InActive' => 'غير فعال',
+    'Yes' => 'نعم',
+    'No' => 'لا',
     'Add Category' => 'اضافة قسم',
     'Add Product' => 'اضافة منتج',
     'View Orders' => 'مشاهدة الطلبات',
     'name' => 'الاسم',
     'Image' => 'الصورة',
+    'Images' => 'الصور',
     'Orders' => 'الطلبات',
     'City' => 'City',
     'street' => 'street',
@@ -42,6 +48,21 @@ return [
     'view orders' => 'مشاهدة الاوردرات',
     'Are you want to delete' => 'هل تريد حذف',
     'Close' => 'غلق',
+    'English Product name' => 'اسم المنتج بالانجليزي',
+    'Arabic Product name' => 'اسم المنتج بالعربي',
+    'English Description' => 'الوصف بالانجليزي',
+    'Arabic Description' => 'الوصف بالعربي',
+    'featured' => 'متميز',
+    'Arabic Category name' => 'اسم القسم بالعربي',
+    'English Category name' => 'اسم القسم بالانجليزي',
+    'Description' => 'الوصف',
+    'update' => 'تحديث',
+    'edit product' => 'تعديل منتج',
+
+
+
+
+
 
 
 

@@ -24,7 +24,8 @@ class storeCategory extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string',
+            'name_en'=>'required|string',
+            'name_ar'=>'required|string',
             'image'=>'required|file'
         ];
     }

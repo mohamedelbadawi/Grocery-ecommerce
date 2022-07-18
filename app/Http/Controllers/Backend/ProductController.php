@@ -58,9 +58,15 @@ class ProductController extends Controller
     {
         try {
             $product = Product::create([
-                'name' => $request->name,
+                'name' => [
+                    'en' =>  $request->name_en,
+                    'ar' => $request->name_ar,
+                ],
                 'category_id' => $request->category_id,
-                'description' => $request->description,
+                'description' => [
+                    'en' => $request->description_en,
+                    'ar' => $request->description_ar,
+                ],
                 'price' => $request->price,
                 'status' => $request->status,
                 'featured' => $request->featured,

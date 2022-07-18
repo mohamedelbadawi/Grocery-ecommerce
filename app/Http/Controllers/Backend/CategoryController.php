@@ -32,7 +32,10 @@ class CategoryController extends Controller
         try {
             $path = $this->uploadImage($request->image, 'assets/categories/', 500, $request->name);
             $path = 'assets/categories/' . $path;
-            Category::create(['name' => $request->name, 'image' => $path]);
+            Category::create(['name' => [
+                'en' => $request->name_en,
+                'ar'=>$request->name_ar
+            ], 'image' => $path]);
         } catch (Exception $ex) {
             return redirect()->route('admin.dashboard');
         }
