@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Order::with(['user', 'products.product','address'])->get();
+            $orders = Order::with(['user', 'products.product', 'address'])->get();
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error ');
         }
@@ -41,7 +41,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }
-        return redirect()->back()->with('success', 'updated successfully');
+        return redirect()->back()->with('success', 'Updated successfully');
     }
     public function deleteProduct(OrderProduct $product)
     {
@@ -52,7 +52,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }
-        return redirect()->back()->with('success', 'deleted successfully');
+        return redirect()->back()->with('success', 'Deleted successfully');
     }
 
 
@@ -63,7 +63,7 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }
-        return redirect()->route('admin.order')->with('success', 'updated successfully');
+        return redirect()->route('admin.order')->with('success', 'Updated successfully');
     }
 
     public function delete(Order $order)
@@ -73,6 +73,6 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Something error');
         }
-        return redirect()->route('admin.order')->with('success', 'Order deleted successfully');
+        return redirect()->route('admin.order')->with('success', 'Deleted successfully');
     }
 }

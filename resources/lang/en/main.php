@@ -52,6 +52,13 @@ return [
     'Description'=>'Description',
     'update'=>'update',
     'edit product'=>'edit product',
+    'profile'=>'profile',
+    'logout'=>'logout',
+    'Something error'=>'Something error',
+    'Deleted successfully'=>'Deleted successfully',
+    'Updated successfully' => 'Updated successfully',
+    'Created successfully' => 'Created successfully',
+    'free cart' => 'free cart'
     
 
 

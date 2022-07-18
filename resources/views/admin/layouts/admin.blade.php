@@ -87,7 +87,8 @@
                         <li class="nav-item dropdown no-arrow ">
                             <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{trans('main.Language')}}</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ trans('main.Language') }}</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -119,7 +120,7 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.settings') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    {{ trans('main.profile') }}
                                 </a>
 
 
@@ -127,7 +128,7 @@
 
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    {{ trans('main.logout') }}
                                 </a>
                             </div>
 
@@ -143,12 +144,12 @@
                 <div class="container-fluid">
                     @if (session('error'))
                         <div class="alert alert-danger">
-                            {{ session('error') }}
+                            {{ trans('main.' . session('error')) }}
                         </div>
                     @endif
                     @if (session('success'))
                         <div class="alert alert-success">
-                            {{ session('success') }}
+                            {{ trans('main.' . session('success')) }}
                         </div>
                     @endif
 
@@ -160,18 +161,6 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->

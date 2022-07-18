@@ -58,7 +58,13 @@ return [
     'Description' => 'الوصف',
     'update' => 'تحديث',
     'edit product' => 'تعديل منتج',
-
+    'profile' => 'البروفايل',
+    'logout' => 'تسجيل الخروج',
+    'Something error' => 'حدث خطأ ما',
+    'Deleted successfully' => 'تم المسح بنجاح',
+    'Updated successfully' => 'تم التحديث بنجاح',
+    'Created successfully' => 'تم الاضافة بنجاح',
+    'free cart' => 'تفريخ العربة',
 
 
 

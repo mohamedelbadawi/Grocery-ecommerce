@@ -36,8 +36,7 @@
                                 <td>{{ $cart->total() }}</td>
                                 <td>
 
-                                    <a class="btn btn-danger mr-2" href="{{ route('admin.cart.free', $cart->id) }}">free
-                                        cart</a>
+                                    <a class="btn btn-danger mr-2" href="{{ route('admin.cart.free', $cart->id) }}">{{trans('main.free cart')}}</a>
                                 </td>
                             </tr>
                         @endforeach

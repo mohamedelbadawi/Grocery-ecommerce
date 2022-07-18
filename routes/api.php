@@ -23,11 +23,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'localization'])->group(function () {
     Route::get('cart', [CartController::class, 'cartProducts']);
     Route::post('cart/remove/product', [CartController::class, 'removeProduct']);
     Route::post('cart/add/product', [CartController::class, 'addProduct']);
@@ -39,10 +41,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('product/{id}/rate', [ProductController::class, 'rateProduct']);
     Route::get('checkout', [OrderController::class, 'checkout']);
 });
+
+
+
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('products/product/{id}', [ProductController::class, 'product']);
 Route::get('products/category/{id}', [ProductController::class, 'category']);
-Route::get('products/index', [ProductController::class, 'index']);
+Route::get('products', [ProductController::class, 'index']);
 Route::get('home', [HomeController::class, 'index']);
 Route::get('logout', [AuthController::class, 'logout']);
 Route::post('register', [AuthController::class, 'register']);

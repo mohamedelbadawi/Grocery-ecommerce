@@ -18,7 +18,7 @@ class CategoryController extends Controller
         try {
             $categories = Category::withCount(['products'])->get();
         } catch (Exception $ex) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('error', 'Something error');
         }
         return view('admin.category.index', compact('categories'));
     }
@@ -34,12 +34,12 @@ class CategoryController extends Controller
             $path = 'assets/categories/' . $path;
             Category::create(['name' => [
                 'en' => $request->name_en,
-                'ar'=>$request->name_ar
+                'ar' => $request->name_ar
             ], 'image' => $path]);
         } catch (Exception $ex) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('error', 'Something error');
         }
-        return redirect()->route('admin.category');
+        return redirect()->route('admin.category')->with('success', 'Created successfully');
     }
     public function edit(Category $category)
     {
@@ -49,7 +49,7 @@ class CategoryController extends Controller
     public function update(updateCategory $request, Category $category)
     {
         try {
-            // dd($request);
+
             if ($request->hasFile('image')) {
                 $this->deleteImage($category->image);
                 $path = $this->uploadImage($request->image, 'assets/categories/', 500, $request->name);
@@ -58,9 +58,9 @@ class CategoryController extends Controller
             }
             $category->update(['name' => $request->name]);
         } catch (Exception $ex) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('error', 'Something error');
         }
-        return redirect()->route('admin.category');
+        return redirect()->route('admin.category')->with('success', 'Updated successfully');;
     }
     public function delete(Category $category)
     {
@@ -68,8 +68,8 @@ class CategoryController extends Controller
             $this->deleteImage($category->image);
             $category->delete();
         } catch (Exception $ex) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('error', 'Something error');
         }
-        return redirect()->route('admin.category');
+        return redirect()->route('admin.category')->with('success', 'Deleted successfully');
     }
 }

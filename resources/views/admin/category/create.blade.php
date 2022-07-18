@@ -12,7 +12,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">{{ trans('main.Arabic Category name') }}</label>
-                    <input type="text" class="form-control" placeholder="{{trans('main.name')}}" name="name_en">
+                    <input type="text" class="form-control" placeholder="{{trans('main.name')}}" name="name_ar">
 
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="name">{{ trans('main.English Category name') }}</label>
-                    <input type="text" class="form-control" placeholder="{{trans('main.name')}}" name="name_ar">
+                    <input type="text" class="form-control" placeholder="{{trans('main.name')}}" name="name_en">
 
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
