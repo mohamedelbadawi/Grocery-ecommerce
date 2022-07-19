@@ -7,9 +7,9 @@ it's a ecommerce website for selling Grocey products
 
 still working in frontend
 
-http://grocery-apid.herokuapp.com/api
+>http://grocery-apid.herokuapp.com/api
 
-http://grocery-apid.herokuapp.com/admin
+>http://grocery-apid.herokuapp.com/admin
 
 ## API
 
@@ -17,7 +17,7 @@ http://grocery-apid.herokuapp.com/admin
 ```bash
   Accept-Language (ar,en) in header to set the Language of returned data 
 ```
- >http://grocery-apid.herokuapp.com/api/products (get request)
+>http://grocery-apid.herokuapp.com/api/products (get request)
 
 ### Get all products with all data
 ```bash
@@ -81,39 +81,39 @@ Arabic
         },
 ```
 #### Get product of speceifc category
-http://grocery-apid.herokuapp.com/api/products/category/2
+>http://grocery-apid.herokuapp.com/api/products/category/2
 
 #### Get single product
-http://grocery-apid.herokuapp.com/api/products/product/1
+>http://grocery-apid.herokuapp.com/api/products/product/1
 ### Auth rotues for user
-http://grocery-apid.herokuapp.com/api/register
+>http://grocery-apid.herokuapp.com/api/register
 
-http://grocery-apid.herokuapp.com/api/login
+>http://grocery-apid.herokuapp.com/api/login
 
-http://grocery-apid.herokuapp.com/api/logout
+>http://grocery-apid.herokuapp.com/api/logout
 ##### Update password
-http://grocery-apid.herokuapp.com/api/user/password/update?oldPassword=123456789&newPassword=12345678
+>http://grocery-apid.herokuapp.com/api/user/password/update?oldPassword=123456789&newPassword=12345678
 
 ### Cart routes
 the cart content is stored in database not in session to make user able to put products and use the website from mobile application and website too
 
 User must be authenticated
 
-http://grocery-apid.herokuapp.com/api/cart 
+>http://grocery-apid.herokuapp.com/api/cart 
 
-http://grocery-apid.herokuapp.com/api/cart/clear 
+>http://grocery-apid.herokuapp.com/api/cart/clear 
 
-http://grocery-apid.herokuapp.com//api/cart/add/product?product_id=2&quantity=10 
+>http://grocery-apid.herokuapp.com//api/cart/add/product?product_id=2&quantity=10 
 
-http://grocery-apid.herokuapp.com/api/cart/remove/product?product_id=129
+>http://grocery-apid.herokuapp.com/api/cart/remove/product?product_id=129
 
 #### Get user addresses
 
-http://grocery-apid.herokuapp.com/api/address
+>http://grocery-apid.herokuapp.com/api/address
 
 #### to check out
 
-http://grocery-apid.herokuapp.com/api/checkout
+>http://grocery-apid.herokuapp.com/api/checkout
 
 #### to make a rate for a product
 http://grocery-apid.herokuapp.com/api/product/2/rate
