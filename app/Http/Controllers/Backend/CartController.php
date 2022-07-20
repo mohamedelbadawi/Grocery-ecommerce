@@ -11,12 +11,13 @@ class CartController extends Controller
 {
     public function index()
     {
-        try {
-            // dd(Cart::first()->products);
-            $carts = Cart::withCount(['user', 'products'])->with(['products.product'])->get();
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'something error');
-        }
+        // try {
+        // dd(Cart::first()->products);
+        $carts = Cart::with(['user', 'products.product'])->get();
+        // dd($carts);
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with('error', 'Something error');
+        // }
         return view('admin.cart.index', compact('carts'));
     }
     public function freeCart(Cart $cart)

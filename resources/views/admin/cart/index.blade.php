@@ -14,10 +14,9 @@
                     <thead>
                         <tr>
                             <th>{{ trans('main.user') }}</th>
-                            <th>{{trans('main.Products')}}</th>
-                            <th>{{trans('main.count')}}</th>
-                            <th>{{trans('main.total')}}</th>
-                            <th>{{trans('main.Actions')}}</th>
+                            <th>{{ trans('main.Products') }}</th>
+                            <th>{{ trans('main.total') }}</th>
+                            <th>{{ trans('main.Actions') }}</th>
                         </tr>
                     </thead>
 
@@ -28,15 +27,14 @@
                                 <td>
                                     @foreach ($cart->products as $product)
                                         ({{ $product->quantity }} => {{ $product->product->name }})
-                                        ,
                                     @endforeach
                                 </td>
 
-                                <td>{{ $cart->products_count }}</td>
                                 <td>{{ $cart->total() }}</td>
                                 <td>
 
-                                    <a class="btn btn-danger mr-2" href="{{ route('admin.cart.free', $cart->id) }}">{{trans('main.free cart')}}</a>
+                                    <a class="btn btn-danger mr-2"
+                                        href="{{ route('admin.cart.free', $cart->id) }}">{{ trans('main.free cart') }}</a>
                                 </td>
                             </tr>
                         @endforeach

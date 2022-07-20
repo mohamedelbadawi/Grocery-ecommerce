@@ -28,7 +28,6 @@ class OrderController extends Controller
                 $product->product->update(['stock' => $product->product->stock - $product->quantity]);
             }
             $user->cart->products()->delete();
-            // dd($user->name);
             $orderData = [
                 'order_id' => $order->id,
                 'user_name' => $user->name,

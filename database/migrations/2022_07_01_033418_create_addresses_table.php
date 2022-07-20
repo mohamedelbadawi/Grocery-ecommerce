@@ -19,6 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->string('building');
             $table->string('code');
+            $table->boolean('default')->default(false);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

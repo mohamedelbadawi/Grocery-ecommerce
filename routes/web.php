@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AhmedController;
 use App\Http\Controllers\Backend\AddressController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Auth\AdminController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 Auth::routes();
 
@@ -88,6 +91,10 @@ Route::group(
                 Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.notification');
             });
         });
+
+        // Normal Users
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('shop/{product}', [ShopController::class, 'getSingleProduct'])->name('shop.product');
+        Route::get('shop', [ShopController::class, 'index'])->name('shop');
     }
 );
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

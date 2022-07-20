@@ -19,7 +19,9 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function total()
+
+
+    public function scopeTotal($query)
     {
         $total = 0;
         foreach ($this->products as $product) {

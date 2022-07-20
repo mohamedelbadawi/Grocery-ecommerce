@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+
+        $categories = cache()->remember('homepage-categories', 60 * 2, function () {
+            return Category::all()->toArray();
+        });
+        $featuredProducts = cache()->remember('homepage-featuredProducts', 60 * 2, function () {
+            return Product::where('featured', 1)->with('images')->paginate(8);
+        });
+
+        return view('home', compact('categories', 'featuredProducts'));
     }
 }

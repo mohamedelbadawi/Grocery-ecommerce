@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\updateSettings;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
 use App\traits\ImageHelper;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -17,8 +21,19 @@ class AdminController extends Controller
         $this->middleware('auth:admin');
     }
     public function index()
+
     {
-        return view('admin.dashboard');
+        $productsCount = Product::count();
+        $categoriesCount = Category::count();
+        $ordersPercentage = Order::OrdersPercentage();
+        $pendingOrders = Order::pendingOrders();
+
+
+        // $labels = $orders->keys();
+
+        // $data = $orders->values();
+
+        return view('admin.dashboard', compact('productsCount', 'categoriesCount', 'ordersPercentage', 'pendingOrders'));
     }
 
     public function editSettings()
@@ -34,7 +49,7 @@ class AdminController extends Controller
             if (Hash::check($request->oldPassword, $admin->password)) {
 
                 if ($request->hasfile('image')) {
-                    if(!$admin->image=="assets/default/undraw_profile.svg"){
+                    if (!$admin->image == "assets/default/undraw_profile.svg") {
                         $this->deleteImage($admin->image);
                     }
                     $file = $this->uploadImage($request->image, 'assets/admins', '500', $request->name);
@@ -49,7 +64,6 @@ class AdminController extends Controller
                 } else {
                     $admin->name = $request->name;
                     $admin->save();
-              
                 }
             } else {
                 return redirect()->back()->with("error", "old password doesn't match");

@@ -14,10 +14,10 @@ class CartProductSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
 
             CartProduct::create([
-                'cart_id' => rand(1, 2),
+                'cart_id' => rand(1, 1000),
                 'product_id' => rand(1, 500),
                 'quantity' => rand(1, 10),
             ]);

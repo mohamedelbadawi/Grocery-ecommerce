@@ -9,7 +9,7 @@ use Spatie\Translatable\HasTranslations;
 class Product extends Model
 {
     use HasFactory, HasTranslations;
-    public $translatable = ['name','description'];
+    public $translatable = ['name', 'description'];
     protected $guarded = [];
 
     public function category()
@@ -20,6 +20,10 @@ class Product extends Model
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+    public function ratesCount()
+    {
+        return $this->hasMany(Rate::class)->count();
     }
 
     public function totalRate()
@@ -32,5 +36,9 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+    public function mainImage()
+    {
+        return $this->hasOne(Image::class)->latest();
     }
 }

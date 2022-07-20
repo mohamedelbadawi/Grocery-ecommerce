@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>{{ trans('sidebar.Dashboard') }}</span></a>
@@ -20,35 +20,35 @@
 
 
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/categories*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.category') }}">
             <i class="fa-solid fa-c"></i>
             <span>{{ trans('sidebar.Categories') }}</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/products*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.product') }}">
             <i class="fa-brands fa-product-hunt"></i>
             <span>{{ trans('sidebar.Products') }}</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/carts*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.cart') }}">
             <i class="fa-solid fa-cart-shopping"></i> <span>{{ trans('sidebar.Carts') }}</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/orders*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.order') }}">
             <i class="fa-solid fa-house"></i>
             <span>{{ trans('sidebar.Orders') }}</span></a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/addresses*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.address') }}">
             <i class="fa-solid fa-house"></i>
             <span>{{ trans('sidebar.Addresses') }}</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is(app()->getlocale().'/admin/users*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.user') }}">
             <i class="fa-solid fa-person"></i>
             <span>{{ trans('sidebar.Users') }}</span></a>

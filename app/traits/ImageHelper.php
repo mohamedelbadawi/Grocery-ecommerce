@@ -9,6 +9,7 @@ trait ImageHelper
 {
     function uploadImage($image, $path, $size, $name)
     {
+        $name = str_replace(' ', '', $name);
         $filename = $name . '_' . time() . '_' . '.' . $image->getClientOriginalExtension();
         $path = public_path($path . $filename);
         Image::make($image->getRealPath())->resize($size, null, function ($constraint) {

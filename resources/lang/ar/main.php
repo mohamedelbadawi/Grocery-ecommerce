@@ -2,7 +2,8 @@
 
 return [
 
-
+    'Dashboard' => 'لوحة التحكم',
+    'pending orders' => 'الطلبات المعلقة',
     'Delete' => 'حذف',
     'Edit' => 'تعديل',
     'Add' => 'اضافة',
@@ -65,6 +66,10 @@ return [
     'Updated successfully' => 'تم التحديث بنجاح',
     'Created successfully' => 'تم الاضافة بنجاح',
     'free cart' => 'تفريخ العربة',
+    'new Password' => 'كلمة المرور الجديدة',
+    'old Password' => 'كلمة المرور القديمة',
+    'Profile Settings' => 'اعدادات البروفايل',
+    'pending orders' => 'الاوردرات المعلقة',
 
 
 

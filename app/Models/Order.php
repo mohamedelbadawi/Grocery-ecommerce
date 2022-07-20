@@ -34,4 +34,16 @@ class Order extends Model
     {
         return $this->created_at->diffForHumans();
     }
+    public static function OrdersPercentage()
+    {
+        if (!Order::count()) {
+            return 0;
+        } else {
+            return (Order::where('status', 'compeleted')->count()) / (Order::count());
+        }
+    }
+    public static function pendingOrders()
+    {
+        return  Order::where('status', 'pending')->count();
+    }
 }

@@ -2,14 +2,14 @@
 
 return [
 
-
+    'Dashboard' => 'Dashboard',
     'Delete' => 'Delete',
     'Edit' => 'Edit',
     'Add' => 'Add',
     'Active' => 'Active',
     'InActive' => 'InActive',
-    'Yes'=>'Yes',
-    'No'=>'No',
+    'Yes' => 'Yes',
+    'No' => 'No',
     'Add Category' => 'Add Category',
     'Add Product' => 'Add Product',
     'View Orders' => 'View Orders',
@@ -47,19 +47,22 @@ return [
     'English Description' => 'English Description',
     'Arabic Description' => 'Arabic Description',
     'featured' => 'featured',
-    'Arabic Category name'=>'Arabic Category name',
-    'English Category name'=>'English Category name',
-    'Description'=>'Description',
-    'update'=>'update',
-    'edit product'=>'edit product',
-    'profile'=>'profile',
-    'logout'=>'logout',
-    'Something error'=>'Something error',
-    'Deleted successfully'=>'Deleted successfully',
+    'Arabic Category name' => 'Arabic Category name',
+    'English Category name' => 'English Category name',
+    'Description' => 'Description',
+    'update' => 'update',
+    'edit product' => 'edit product',
+    'profile' => 'profile',
+    'logout' => 'logout',
+    'Something error' => 'Something error',
+    'Deleted successfully' => 'Deleted successfully',
     'Updated successfully' => 'Updated successfully',
     'Created successfully' => 'Created successfully',
-    'free cart' => 'free cart'
-    
+    'free cart' => 'free cart',
+    'new Password' => 'new Password',
+    'old Password' => 'old Password',
+    'Profile Settings' => 'Profile Settings',
+    'pending orders' => 'pending orders',
 
 
 
