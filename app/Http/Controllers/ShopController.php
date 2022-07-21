@@ -10,10 +10,7 @@ class ShopController extends Controller
 
     public function index()
     {
-        $products = cache()->remember('shop-products', 60 * 5, function () {
-            return Product::with(['category','mainImage'])->paginate(12);
-        });
-        return view('shop', compact('products'));
+        return view('shop');
     }
     public function getSingleProduct(Product $product)
     {

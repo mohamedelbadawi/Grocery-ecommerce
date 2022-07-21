@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    @livewireStyles
+
 </head>
 
 <body class="goto-here">
@@ -162,7 +164,7 @@
                 </div>
             </div>
 
-         
+
         </div>
     </footer>
 
@@ -176,7 +178,7 @@
                 stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
-
+    @livewireScripts
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('frontend/js/popper.min.js') }}"></script>

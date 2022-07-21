@@ -137,6 +137,7 @@ a {
   text-decoration: none;
   background-color: transparent; }
   a:hover {
+    cursor: pointer;
     color: #0056b3;
     text-decoration: underline; }
 
@@ -8641,6 +8642,7 @@ h1, h2, h3, h4, h5,
     -ms-border-radius: 5px;
     border-radius: 5px; }
     .product-category li a.active {
+      cursor: pointer;
       background: #82ae46;
       color: #fff; }
 
