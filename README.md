@@ -31,6 +31,8 @@ I used multi guard and made a seprated table for admins to make Auth
 ## Home
 ![This is an image](https://raw.githubusercontent.com/mohamedelbadawi/Grocery-ecommerce/main/home.png)
 
+![This is an image](https://raw.githubusercontent.com/mohamedelbadawi/Grocery-ecommerce/main/home1.png)
+
 - multi language for site and product.
 - realtime search for product in Arabic or English.
 - multi category realtime filtering.
