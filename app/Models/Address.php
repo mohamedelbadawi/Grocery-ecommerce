@@ -17,8 +17,8 @@ class Address extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function default()
-    {
-        return $this->where('default', 1);
-    }
+    // public function default()
+    // {
+    //     return $this->where('default', 1);
+    // }
 }

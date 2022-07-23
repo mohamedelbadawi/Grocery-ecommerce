@@ -43,7 +43,10 @@
 }
 
 .colored-toast.swal2-icon-success {
-  background-color: #a5dc86 !important;
+  background-color: #468b1e !important;
+}
+.colored-toast.swal2-icon-error {
+  background-color: #c71f1f !important;
 }
 
 .colored-toast .swal2-title {

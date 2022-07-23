@@ -18,55 +18,79 @@ class PaymentMethod extends Component
     public $year;
     public $cvc;
 
+    protected $rules = [
+
+        'cardNumber' => 'required',
+        'month' => 'required',
+        'year' => 'required',
+        'cvc' => 'required',
+
+    ];
+
+
+
     public function placeOrder()
     {
-        try {
 
-            $user = auth()->user();
-            if ($this->paymentMethod == 'cash') {
-                $this->createOrder('cash');
 
-                return redirect()->route('home');
-            } else if ($this->paymentMethod == 'card') {
-
-                $order = $this->createOrder($user);
-                $stripe = Stripe::make(env('STRIPE_KEY'));
-
-                $token = $stripe->tokens()->create(['card' => [
-                    'number' => $this->cardNumber,
-                    'exp_month' => $this->month,
-                    'exp_year' => $this->year,
-                    'cvc' => $this->cvc,
-                ]]);
-
-                $customer = $stripe->customers()->create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'source' => $token['id']
-                ]);
-                $charge = $stripe->charges()->create([
-                    'customer' => $customer['id'],
-                    'currency' => 'USD',
-                    'amount' => \Cart::instance('cart')->total() + 20,
-                ]);
-
-                if ($charge['status'] == 'succeeded') {
-                    $this->makeTransaction($user, $order, 'card', 'approved');
-                } else {
-                    $this->makeTransaction($user, $order, 'card', 'canceled');
-                    $this->dispatchBrowserEvent('alert', [
-                        'type' => 'error',
-                        'icon' => 'error',
-                        'message' => "Orded can't created right now",
-                    ]);
-                }
-            }
-        } catch (\Throwable $th) {
+        if (!$this->paymentMethod) {
             $this->dispatchBrowserEvent('alert', [
                 'type' => 'error',
                 'icon' => 'error',
-                'message' => "Orded can't created right now",
+                'message' => "you should choose a payment method",
             ]);
+            return redirect()->back();
+        }
+
+        if (auth()->user()->defaultAddress->isEmpty()) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'icon' => 'error',
+                'message' => "you should add or make a default address",
+            ]);
+            return redirect()->back();
+        }
+
+        $user = auth()->user();
+        if ($this->paymentMethod == 'cash') {
+            $this->createOrder('cash');
+
+            return redirect()->route('home');
+        } else if ($this->paymentMethod == 'card') {
+
+            $this->validate();
+            $order = $this->createOrder($user);
+            $stripe = Stripe::make(env('STRIPE_KEY'));
+
+            $token = $stripe->tokens()->create(['card' => [
+                'number' => $this->cardNumber,
+                'exp_month' => $this->month,
+                'exp_year' => $this->year,
+                'cvc' => $this->cvc,
+            ]]);
+
+            $customer = $stripe->customers()->create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'source' => $token['id']
+            ]);
+            $charge = $stripe->charges()->create([
+                'customer' => $customer['id'],
+                'currency' => 'USD',
+                'amount' => \Cart::instance('cart')->total() + 20,
+            ]);
+
+            if ($charge['status'] == 'succeeded') {
+                $this->makeTransaction($user, $order, 'card', 'approved');
+            } else {
+                $this->makeTransaction($user, $order, 'card', 'canceled');
+                $this->dispatchBrowserEvent('alert', [
+                    'type' => 'error',
+                    'icon' => 'error',
+                    'message' => "Orded can't created right now",
+                ]);
+            }
+            return redirect()->route('home');
         }
     }
 

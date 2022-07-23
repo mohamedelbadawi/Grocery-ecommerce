@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.timepicker.css') }}">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('frontend/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
