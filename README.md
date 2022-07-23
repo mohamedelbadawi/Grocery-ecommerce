@@ -1,124 +1,18 @@
 
 # Grocey ecommerce web and app
 
-it's a ecommerce website for selling Grocey products
+it's a multi language (Ar,En) ecommerce website for selling Grocey products
+developed with PHP Laravel and some other tools and frameworks such as livewire .
+
 
 ## Live version
 
-still working in frontend
 
->http://grocery-apid.herokuapp.com/api
+http://grocery-apid.herokuapp.com/home
 
->http://grocery-apid.herokuapp.com/admin
+http://grocery-apid.herokuapp.com/api
 
-## API
-
-
-```bash
-  Accept-Language (ar,en) in header to set the Language of returned data 
-```
->http://grocery-apid.herokuapp.com/api/products (get request)
-
-### Get all products with all data
-```bash
-Arabic
-
-"data": [
- {
-            "id": 1,
-            "name": "مشروم",
-            "price": 2,
-            "description": "لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور\n\n                                    أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد\n                                    \n                                    أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات",
-            "stock": 3,
-            "category": "منتجات الالبان",
-            "status": 1,
-            "rate": 0,
-            "images": [
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-3.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-1.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-3.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-6.png"
-                }
-            ]
-        },
-        ]
-
-        
-
- English
-
-"data": [
-        {
-            "id": 1,
-            "name": "Mushroom",
-            "price": 2,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis enim at lacus bibendum pretium. Vivamus pulvinar ullamcorper viverra.",
-            "stock": 3,
-            "category": "Diary",
-            "status": 1,
-            "rate": 0,
-            "images": [
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-3.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-1.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-3.png"
-                },
-                {
-                    "image": "http://grocery-apid.herokuapp.com/assets/products/product-6.png"
-                }
-            ]
-        },
-```
-#### Get product of speceifc category
->http://grocery-apid.herokuapp.com/api/products/category/2
-
-#### Get single product
->http://grocery-apid.herokuapp.com/api/products/product/1
-### Auth rotues for user
->http://grocery-apid.herokuapp.com/api/register
-
->http://grocery-apid.herokuapp.com/api/login
-
->http://grocery-apid.herokuapp.com/api/logout
-##### Update password
->http://grocery-apid.herokuapp.com/api/user/password/update?oldPassword=123456789&newPassword=12345678
-
-### Cart routes
-the cart content is stored in database not in session to make user able to put products and use the website from mobile application and website too
-
-User must be authenticated
-
->http://grocery-apid.herokuapp.com/api/cart 
-
->http://grocery-apid.herokuapp.com/api/cart/clear 
-
->http://grocery-apid.herokuapp.com//api/cart/add/product?product_id=2&quantity=10 
-
->http://grocery-apid.herokuapp.com/api/cart/remove/product?product_id=129
-
-#### Get user addresses
-
->http://grocery-apid.herokuapp.com/api/address
-
-#### to check out
-
->http://grocery-apid.herokuapp.com/api/checkout
-
-#### to make a rate for a product
-http://grocery-apid.herokuapp.com/api/product/2/rate
-
-
+http://grocery-apid.herokuapp.com/admin
 
 ## Admin Dashboard
 
@@ -133,6 +27,75 @@ I used multi guard and made a seprated table for admins to make Auth
 - Notifications for each created order implemented with queue to reduce time
 - Extract data to many files such as `PDF , Excel ,CSV` 
 
-# It still under development
+
+## Home
+![This is an image](https://raw.githubusercontent.com/mohamedelbadawi/Grocery-ecommerce/main/home.png)
+
+- multi language for site and product.
+- realtime search for product in Arabic or English.
+- multi category realtime filtering.
+- session and database cart for user.
+- multi address and choose one to be default.
+- cash and card payment method using stripe.
+- realtime validation for credit card info.
+# API still under development
 
 
+Clone the repository
+
+    git clone https://github.com/mohamedelbadawi/Grocery-ecommerce.git
+
+Switch to the repo folder
+
+    cd Grocery-ecommerce
+
+Install all the dependencies using composer
+
+    composer install
+    composer update
+
+Copy the example env file and make the required configuration changes in the .env file
+
+    cp .env.example .env
+
+Generate a new application key
+
+    php artisan key:generate
+
+
+Run the database migrations (**Set the database connection in .env before migrating**)
+
+    php artisan migrate
+
+Start the local development server
+
+    php artisan serve
+
+You can now access the server at http://localhost:8000
+
+
+**Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
+
+    php artisan migrate
+    php artisan serve
+
+## Database seeding
+
+Run the database seeder and you're done
+
+    php artisan db:seed
+
+***Note*** : It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database by running the following command
+
+    php artisan migrate:refresh
+    
+
+
+
+
+
+## to launch the server
+```bash
+php artisan serve
+```
+The  project is now up and running! Access it at http://localhost:8000.
