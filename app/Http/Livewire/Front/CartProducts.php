@@ -12,7 +12,9 @@ class CartProducts extends Component
     public function removeProduct($rowId)
     {
         \Cart::instance('cart')->remove($rowId);
-        \Cart::instance('cart')->store(auth()->user()->email);
+        if (Auth::check()) {
+            \Cart::instance('cart')->store(auth()->user()->email);
+        }
         $this->emit('product-removed');
         $this->dispatchBrowserEvent('alert', [
             'type' => 'success',
