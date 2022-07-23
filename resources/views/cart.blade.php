@@ -13,10 +13,10 @@
                                     <tr class="text-center">
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
-                                        <th>Product name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
+                                        <th>{{ trans('cart.Product name') }}</th>
+                                        <th>{{ trans('cart.Price') }}</th>
+                                        <th>{{ trans('cart.Quantity') }}</th>
+                                        <th>{{ trans('cart.Total') }}</th>
                                     </tr>
                                 @endif
                             </thead>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             @if (Cart::count())
-            @livewire('front.cart-total')
+                @livewire('front.cart-total')
             @endif
         </div>
     </section>

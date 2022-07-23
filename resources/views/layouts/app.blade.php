@@ -71,11 +71,10 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ request()->is(app()->getlocale() . '/home') ? 'active' : '' }}"><a
-                            href="{{ route('home') }}" class="nav-link">Home</a></li>
+                            href="{{ route('home') }}" class="nav-link">{{trans('front.Home')}}</a></li>
                     <li class="nav-item {{ request()->is(app()->getlocale() . '/shop*') ? 'active' : '' }}"><a
-                            href="{{ route('shop') }}" class="nav-link">Shop</a></li>
+                            href="{{ route('shop') }}" class="nav-link">{{trans('front.Shop')}}</a></li>
 
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     @auth
                         <li class="nav-item">
                             <a class="nav-link">{{ auth()->user()->name }} </a>
@@ -86,13 +85,19 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#logout-Modal" data-toggle="modal" data-target="#logout-Modal">logout
+                            <a class="nav-link " href="#logout-Modal" data-toggle="modal" data-target="#logout-Modal">{{trans( 'front.logout')}}
                             </a>
                         </li>
                     @endauth
                     @guest
-                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+                    
+
+                    @livewire('front.cart-counter')
+
+
+                    
+                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">{{trans('front.Login')}}</a></li>
+                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">{{trans('front.Register')}}</a></li>
 
                     @endguest
 
@@ -162,34 +167,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Menu</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Shop</a></li>
-                            <li><a href="#" class="py-2 d-block">About</a></li>
-                            <li><a href="#" class="py-2 d-block">Journal</a></li>
-                            <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Help</h2>
-                        <div class="d-flex">
-                            <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-                                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-                                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-                                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-                                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-                            </ul>
-                            <ul class="list-unstyled">
-                                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-                                <li><a href="#" class="py-2 d-block">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Have a Questions?</h2>

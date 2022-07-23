@@ -32,7 +32,7 @@
     @empty
         <tr class="text-center">
             <td class="product-name">
-                <h2>Cart is empty</h2>
+                <h2>{{trans('cart.Cart is empty')}}</h2>
             </td>
         </tr>
     @endforelse

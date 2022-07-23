@@ -50,7 +50,7 @@
                         <p style="color: #000;">{{ $product->stock }} kg {{ trans('front.available') }}</p>
                     </div>
                 </div>
-                <p><a wire:click="addToCart" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+                <p><a wire:click="addToCart" class="btn btn-black py-3 px-5">{{trans('front.Add to Cart')}}</a></p>
             </div>
         </div>
     </div>

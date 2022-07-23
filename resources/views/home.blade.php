@@ -8,9 +8,8 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-md-12 ftco-animate text-center">
-                            <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-                            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <h1 class="mb-2">{{ trans('front.We serve Fresh Vegestables &amp; Fruits') }}</h1>
+                            <h2 class="subheading mb-4">{{ trans('front.We deliver organic vegetables &amp; fruits') }}</h2>
                         </div>
 
                     </div>
@@ -23,9 +22,8 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-sm-12 ftco-animate text-center">
-                            <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-                            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <h1 class="mb-2">{{ trans('front.100% Fresh &amp; Organic Foods') }}</h1>
+                            <h2 class="subheading mb-4">{{trans('front.We deliver organic vegetables &amp; fruits')}}</h2>
                         </div>
 
                     </div>
@@ -43,8 +41,8 @@
                             <span class="flaticon-shipped"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Free Shipping</h3>
-                          
+                            <h3 class="heading">{{ trans('front.Free Shipping') }}</h3>
+
                         </div>
                     </div>
                 </div>
@@ -54,8 +52,8 @@
                             <span class="flaticon-diet"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Always Fresh</h3>
-                            <span>Product well package</span>
+                            <h3 class="heading">{{ trans('front.Always Fresh') }}</h3>
+                            <span>{{ trans('front.Product well package') }}</span>
                         </div>
                     </div>
                 </div>
@@ -65,8 +63,8 @@
                             <span class="flaticon-award"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Superior Quality</h3>
-                            <span>Quality Products</span>
+                            <h3 class="heading">{{ trans('front.Superior Quality') }}</h3>
+                            <span>{{ trans('front.Quality Products') }}</span>
                         </div>
                     </div>
                 </div>
@@ -76,8 +74,8 @@
                             <span class="flaticon-customer-service"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Support</h3>
-                            <span>24/7 Support</span>
+                            <h3 class="heading">{{ trans('front.Support') }}</h3>
+                            <span>24/7 {{ trans('front.Support') }}</span>
                         </div>
                     </div>
                 </div>
@@ -96,7 +94,8 @@
                                 <div class="text text-center">
                                     <h2>{{ trans('front.Vegetables') }}</h2>
                                     <p>{{ trans('front.Protect the health of every home') }}</p>
-                                    <p><a href="{{route('shop')}}" class="btn btn-primary">Shop now</a></p>
+                                    <p><a href="{{ route('shop') }}"
+                                            class="btn btn-primary">{{ trans('front.Shop now') }}</a></p>
                                 </div>
                             </div>
                         </div>
@@ -109,8 +108,7 @@
                             <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
                                 style="background-image: url({{ asset($categories[0]['image']) }});">
                                 <div class="text px-3 py-1">
-                                    <h2 class="mb-0"><a
-                                            >{{ $categories[0]['name'][App::getLocale()] }}</a>
+                                    <h2 class="mb-0"><a>{{ $categories[0]['name'][App::getLocale()] }}</a>
                                     </h2>
                                 </div>
                             </div>
@@ -118,8 +116,7 @@
                             <div class="category-wrap ftco-animate img d-flex align-items-end"
                                 style="background-image: url({{ asset($categories[1]['image']) }} );">
                                 <div class="text px-3 py-1">
-                                    <h2 class="mb-0"><a
-                                            >{{ $categories[1]['name'][App::getLocale()] }}</a>
+                                    <h2 class="mb-0"><a>{{ $categories[1]['name'][App::getLocale()] }}</a>
                                     </h2>
                                 </div>
                             </div>
@@ -135,13 +132,13 @@
                     <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
                         style="background-image: url({{ asset($categories[2]['image']) }});">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a >{{ $categories[2]['name'][App::getLocale()] }}</a></h2>
+                            <h2 class="mb-0"><a>{{ $categories[2]['name'][App::getLocale()] }}</a></h2>
                         </div>
                     </div>
                     <div class="category-wrap ftco-animate img d-flex align-items-end"
                         style="background-image: url({{ asset($categories[3]['image']) }});">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a >{{ $categories[3]['name'][App::getLocale()] }}</a></h2>
+                            <h2 class="mb-0"><a>{{ $categories[3]['name'][App::getLocale()] }}</a></h2>
                         </div>
                     </div>
                 </div>
@@ -157,9 +154,10 @@
         <div class="container">
             <div class="row justify-content-center mb-3 pb-3">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Featured Products</span>
-                    <h2 class="mb-4">Our Products</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    <span class="subheading">{{ trans('front.Featured Products') }}</span>
+                    <h2 class="mb-4">{{ trans('front.Our Products') }}</h2>
+                    <p>{{ trans('front.Far far away, behind the word mountains, far from the countries Vokalia and Consonantia') }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -168,26 +166,26 @@
                 @foreach ($featuredProducts as $product)
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product">
-                            <a href="{{route('shop.product',$product->id)}}" class="img-prod"><img class="img-fluid" src="{{asset($product->images->first()->image)}}"
-                                    alt="Colorlib Template">
-                               
+                            <a href="{{ route('shop.product', $product->id) }}" class="img-prod"><img class="img-fluid"
+                                    src="{{ asset($product->images->first()->image) }}" alt="Colorlib Template">
+
                                 <div class="overlay"></div>
                             </a>
                             <div class="text py-3 pb-4 px-3 text-center">
-                                <h3><a href="#">{{$product->name}}</a></h3>
+                                <h3><a href="#">{{ $product->name }}</a></h3>
                                 <div class="d-flex">
                                     <div class="pricing">
-                                        <p class="price"><span class="mr-2 price-sale">${{$product->price}}</span></p>
+                                        <p class="price"><span class="mr-2 price-sale">${{ $product->price }}</span></p>
                                     </div>
                                 </div>
                                 <div class="bottom-area d-flex px-3">
                                     <div class="m-auto d-flex">
-                                     
+
                                         <a href="#"
                                             class="buy-now d-flex justify-content-center align-items-center mx-1">
                                             <span><i class="ion-ios-cart"></i></span>
                                         </a>
-                                     
+
                                     </div>
                                 </div>
                             </div>
