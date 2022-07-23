@@ -44,8 +44,13 @@ class ProductSeeder extends Seeder
 
         for ($i = 1; $i <= 1000; $i++) {
             $num = rand(0, 14);
-            Product::create([
-                'name' =>   [
+
+            $names = [
+                'en' => $productsName_en[$num],
+                'ar' => $productsName_ar[$num],
+            ];
+            $product = Product::create([
+                'name' =>  [
                     'en' => $productsName_en[$num],
                     'ar' => $productsName_ar[$num],
                 ],
@@ -65,6 +70,7 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            $product['name'] = json_encode($names, JSON_UNESCAPED_UNICODE);
         }
     }
 }

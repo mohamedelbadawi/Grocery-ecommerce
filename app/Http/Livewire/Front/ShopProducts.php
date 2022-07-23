@@ -24,7 +24,7 @@ class ShopProducts extends Component
         $selectedCategories = $this->selectedCategories;
         $categories = Category::all();
         $products =
-            Product::where('name->en', 'like', '%' . $this->search . '%')->orWhere('name->ar', 'like', '%' . $this->search . '%')->with(['category', 'mainImage'])
+            Product::Where('name', 'like', '%' . $this->search . '%')->with(['category', 'mainImage'])
             ->where(function ($query) {
                 $query->when(!empty($this->selectedCategories), function ($query) {
                     $query->whereHas('category', function ($query) {

@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         $user = User::create(['name' => 'Mohamed Reda', 'email' => 'Mohamed@gmail.com', 'password' => bcrypt('123456789'), 'image' => "assets/admins/undraw_profile.svg"]);
         // Cart::create(['user_id' => $user->id]);
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
            $user=User::create(['name' => 'Ahmed saleh', 'email' => 'Ahmed' . $i . '@gmail.com', 'password' => bcrypt('123456789'), 'image' => "assets/admins/undraw_profile.svg"]);
         //    Cart::create(['user_id' => $user->id]);
 

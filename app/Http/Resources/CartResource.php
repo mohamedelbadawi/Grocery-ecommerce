@@ -15,12 +15,13 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
+        \Cart::instance('cart')->restore(auth()->user()->email);
+
         return [
-            'id' => $this->id,
-            'user name' => $this->user->name,
-            'user_id'=>$this->user_id,
-            'products' => CartProductCollection::make($this->products),
-            'total'=>$this->user->cart->total()
+            'user name' => auth()->user()->name,
+            'user_id'=>auth()->id(),
+            'products' => CartProductCollection::make(\Cart::instance('cart')->content()),
+            'total'=>\Cart::instance('cart')->total()
             
         ];
     }
