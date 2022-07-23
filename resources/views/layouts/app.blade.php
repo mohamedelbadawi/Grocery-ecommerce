@@ -71,9 +71,9 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ request()->is(app()->getlocale() . '/home') ? 'active' : '' }}"><a
-                            href="{{ route('home') }}" class="nav-link">{{trans('front.Home')}}</a></li>
+                            href="{{ route('home') }}" class="nav-link">{{ trans('front.Home') }}</a></li>
                     <li class="nav-item {{ request()->is(app()->getlocale() . '/shop*') ? 'active' : '' }}"><a
-                            href="{{ route('shop') }}" class="nav-link">{{trans('front.Shop')}}</a></li>
+                            href="{{ route('shop') }}" class="nav-link">{{ trans('front.Shop') }}</a></li>
 
                     @auth
                         <li class="nav-item">
@@ -85,21 +85,41 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="#logout-Modal" data-toggle="modal" data-target="#logout-Modal">{{trans( 'front.logout')}}
+                            <a class="nav-link " href="#logout-Modal" data-toggle="modal"
+                                data-target="#logout-Modal">{{ trans('front.logout') }}
                             </a>
                         </li>
                     @endauth
                     @guest
-                    
-
-                    @livewire('front.cart-counter')
 
 
-                    
-                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">{{trans('front.Login')}}</a></li>
-                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">{{trans('front.Register')}}</a></li>
+                        @livewire('front.cart-counter')
+
+
+
+                        <li class="nav-item"><a href="{{ route('login') }}"
+                                class="nav-link">{{ trans('front.Login') }}</a></li>
+                        <li class="nav-item"><a href="{{ route('register') }}"
+                                class="nav-link">{{ trans('front.Register') }}</a></li>
 
                     @endguest
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span
+                                class="mr-2 d-none d-lg-inline text-gray-600 small">{{ trans('main.Language') }}</span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="langDropdown">
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}</a>
+                            @endforeach
+                        </div>
+
+                    </li>
 
                 </ul>
             </div>
@@ -167,7 +187,7 @@
                         </ul>
                     </div>
                 </div>
-            
+
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Have a Questions?</h2>

@@ -21,12 +21,12 @@ return [
     'Product well package' => 'حزمة المنتج بشكل جيد',
     'Support' => 'الدعم',
     'Superior Quality' => 'جودة فائقة',
-    'Quality Products'=>'منتجات ذات جودة عالية',
-    'We serve Fresh Vegestables &amp; Fruits'=>'نقدم الخضار والفواكه الطازجة',
-    'We deliver organic vegetables &amp; fruits'=>'نقوم بتوصيل الخضروات العضوية و الفاكهة',
-    '100% Fresh &amp; Organic Foods'=>' طازجة وأغذية عضوية100%',
-    'We deliver organic vegetables &amp; fruits'=>'نقوم بتوصيل الخضروات العضوية و الفاكهة',
-    ''
+    'Quality Products' => 'منتجات ذات جودة عالية',
+    'We serve Fresh Vegestables &amp; Fruits' => 'نقدم الخضار والفواكه الطازجة',
+    'We deliver organic vegetables &amp; fruits' => 'نقوم بتوصيل الخضروات العضوية و الفاكهة',
+    '100% Fresh &amp; Organic Foods' => ' طازجة وأغذية عضوية100%',
+    'We deliver organic vegetables &amp; fruits' => 'نقوم بتوصيل الخضروات العضوية و الفاكهة',
+    'language' => 'اللغة',
 
 
 ];

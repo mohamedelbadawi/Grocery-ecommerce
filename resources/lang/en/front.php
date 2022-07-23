@@ -26,5 +26,5 @@ return [
     'We deliver organic vegetables &amp; fruits' => 'We deliver organic vegetables &amp; fruits',
     '100% Fresh &amp; Organic Foods' => '100% Fresh &amp; Organic Foods',
     'We deliver organic vegetables &amp; fruits' => 'We deliver organic vegetables &amp; fruits',
-    
+    'language' => 'language',
 ];
