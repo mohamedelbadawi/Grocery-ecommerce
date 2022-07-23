@@ -44,7 +44,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="heading">Free Shipping</h3>
-                            <span>On order over $100</span>
+                          
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                                 <div class="text text-center">
                                     <h2>{{ trans('front.Vegetables') }}</h2>
                                     <p>{{ trans('front.Protect the health of every home') }}</p>
-                                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                                    <p><a href="{{route('shop')}}" class="btn btn-primary">Shop now</a></p>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                 style="background-image: url({{ asset($categories[0]['image']) }});">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a
-                                            href="#">{{ $categories[0]['name'][App::getLocale()] }}</a>
+                                            >{{ $categories[0]['name'][App::getLocale()] }}</a>
                                     </h2>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                 style="background-image: url({{ asset($categories[1]['image']) }} );">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a
-                                            href="#">{{ $categories[1]['name'][App::getLocale()] }}</a>
+                                            >{{ $categories[1]['name'][App::getLocale()] }}</a>
                                     </h2>
                                 </div>
                             </div>
@@ -135,13 +135,13 @@
                     <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
                         style="background-image: url({{ asset($categories[2]['image']) }});">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a href="#">{{ $categories[2]['name'][App::getLocale()] }}</a></h2>
+                            <h2 class="mb-0"><a >{{ $categories[2]['name'][App::getLocale()] }}</a></h2>
                         </div>
                     </div>
                     <div class="category-wrap ftco-animate img d-flex align-items-end"
                         style="background-image: url({{ asset($categories[3]['image']) }});">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a href="#">{{ $categories[3]['name'][App::getLocale()] }}</a></h2>
+                            <h2 class="mb-0"><a >{{ $categories[3]['name'][App::getLocale()] }}</a></h2>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
         </div>
     </section>
 
-    <section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
+    {{-- <section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -342,7 +342,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
         <div class="container py-4">

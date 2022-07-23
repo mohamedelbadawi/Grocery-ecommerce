@@ -96,5 +96,10 @@ Route::group(
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         Route::get('shop/{product}', [ShopController::class, 'getSingleProduct'])->name('shop.product');
         Route::get('shop', [ShopController::class, 'index'])->name('shop');
+        Route::get('cart', [ShopController::class, 'cart'])->name('cart');
+        Route::get(
+            '/checkout',
+            [ShopController::class, 'checkout']
+        )->middleware('checkout')->name('checkout');
     }
 );

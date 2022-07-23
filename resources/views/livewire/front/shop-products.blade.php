@@ -1,9 +1,12 @@
 <div>
+    <div class="form-group">
+        <label for="searh"> search</label>
+        <input type="text" class="form-control" style="width: 30%" wire:model="search">
+    </div>
+
     <div class="row justify-content-center">
         <div class="col-md-10 mb-5 text-center">
             <ul class="product-category">
-
-
 
                 @foreach ($categories as $category)
                     <li><a wire:click="filterCategories({{ $category->id }})"
@@ -46,8 +49,8 @@
                 </div>
             </div>
         @endforeach
+        {{ $products->links() }}
     </div>
-    
+
     {{-- @include('pagination') --}}
-    {{ $products->links() }}
 </div>

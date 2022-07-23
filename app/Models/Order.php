@@ -22,6 +22,11 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class);
     }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
     public function total()
     {
         $total = 0;

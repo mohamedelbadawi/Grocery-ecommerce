@@ -4,7 +4,7 @@
 
 <head>
     <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
+    <meta charset="utf8mb4">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
@@ -62,7 +62,7 @@
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Vegefoods</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Vegefoods</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -70,14 +70,31 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item active"><a href="{{ route('shop') }}" class="nav-link">Shop</a></li>
+                    <li class="nav-item {{ request()->is(app()->getlocale() . '/home') ? 'active' : '' }}"><a
+                            href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item {{ request()->is(app()->getlocale() . '/shop*') ? 'active' : '' }}"><a
+                            href="{{ route('shop') }}" class="nav-link">Shop</a></li>
 
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
-                                class="icon-shopping_cart"></span>[0]</a></li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link">{{ auth()->user()->name }} </a>
+                        </li>
+
+                        @livewire('front.cart-counter')
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="#logout-Modal" data-toggle="modal" data-target="#logout-Modal">logout
+                            </a>
+                        </li>
+                    @endauth
+                    @guest
+                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
+
+                    @endguest
 
                 </ul>
             </div>
@@ -85,8 +102,31 @@
     </nav>
 
     {{-- Navbard --}}
-
-
+    {{-- Modal --}}
+    <div class="modal fade" id="logout-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Modal --}}
 
     <main>
         @yield('content')
@@ -100,13 +140,16 @@
 
     <footer class="ftco-footer ftco-section">
         <div class="container">
-            <div class="row">
-                <div class="mouse">
-                    <a href="#" class="mouse-icon">
-                        <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-                    </a>
+            @if (!(request()->is(app()->getlocale() . '/login') || request()->is(app()->getlocale() . '/register')))
+                <div class="row">
+                    <div class="mouse">
+                        <a href="#" class="mouse-icon">
+                            <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
+
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
@@ -178,7 +221,6 @@
                 stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
 
-    @livewireScripts
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
@@ -195,6 +237,41 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('frontend/js/google-map.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 1500,
+            iconColor: 'white',
+            titleColor: 'white',
+            customClass: {
+                popup: 'colored-toast'
+            },
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        window.addEventListener('alert', ({
+            detail: {
+                type,
+                message
+            }
+        }) => {
+            Toast.fire({
+                icon: type,
+                title: message
+            })
+        })
+    </script>
+    @livewireScripts
+
     @yield('script')
 
 </body>

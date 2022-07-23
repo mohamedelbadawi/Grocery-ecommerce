@@ -12,6 +12,8 @@ class ShopProducts extends Component
 
     public $categories;
 
+    public $search;
+
     public function mount()
     {
         $this->categories = Category::all();
@@ -22,7 +24,7 @@ class ShopProducts extends Component
         $selectedCategories = $this->selectedCategories;
         $categories = Category::all();
         $products =
-            Product::with(['category', 'mainImage'])
+            Product::where('name->en', 'like', '%' . $this->search . '%')->orWhere('name->ar', 'like', '%' . $this->search . '%')->with(['category', 'mainImage'])
             ->where(function ($query) {
                 $query->when(!empty($this->selectedCategories), function ($query) {
                     $query->whereHas('category', function ($query) {
