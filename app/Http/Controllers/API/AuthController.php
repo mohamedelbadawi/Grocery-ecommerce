@@ -30,7 +30,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-        Cart::create(['user_id' => $user->id]);
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
@@ -53,7 +53,7 @@ class AuthController extends Controller
     public function updatePassword(Request $request)
     {
 
-         $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'oldPassword' => 'required',
             'newPassword' => 'required',
         ]);

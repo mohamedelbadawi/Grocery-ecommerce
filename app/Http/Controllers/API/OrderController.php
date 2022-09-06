@@ -9,35 +9,88 @@ use App\Models\Admin;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Cartalyst\Stripe\Stripe;
 
 class OrderController extends Controller
 {
-    public function checkout(Request $request)
+
+    public function checkout()
     {
-        $user = Auth::user();
-        if ($user->Cart->products->count() > 0) {
-            
-            $order = Order::create(['user_id' => $user->id, 'address_id' => $user->addresses->first()->id, 'subtotal' => $user->cart->total(), 'shipping' => 20, 'total' => $user->cart->total() + 20,]);
-            foreach ($user->cart->products as $product) {
-                OrderProduct::create(['product_id' => $product->product_id, 'order_id' => $order->id, 'quantity' => $product->quantity, 'total' => $product->product->price * $product->quantity]);
-                $product->product->update(['stock' => $product->product->stock - $product->quantity]);
-            }
-            $user->cart->products()->delete();
-            $orderData = [
-                'order_id' => $order->id,
-                'user_name' => $user->name,
-                'address' => $user->addresses->first()->city,
-                'total' => $order->total
-            ];
-            OrderNotificationJob::dispatch($orderData);
-        } else {
-            return response()->json(['Cart is empty']);
+
+
+        if (!$this->paymentMethod) {
+
+            return response()->json('you must pass the payment method');
         }
-        return response()->json(['Total' => $order->total]);
+
+        if (auth()->user()->defaultAddress->isEmpty()) {
+            return response()->json('you must make a default address');
+        }
+
+        $user = auth()->user();
+        if ($this->paymentMethod == 'cash') {
+            $this->createOrder('cash');
+
+            return redirect()->route('home');
+        } else if ($this->paymentMethod == 'card') {
+
+            $order = $this->createOrder($user);
+            $stripe = Stripe::make(env('STRIPE_KEY'));
+
+            $token = $stripe->tokens()->create(['card' => [
+                'number' => $this->cardNumber,
+                'exp_month' => $this->month,
+                'exp_year' => $this->year,
+                'cvc' => $this->cvc,
+            ]]);
+
+            $customer = $stripe->customers()->create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'source' => $token['id']
+            ]);
+            $charge = $stripe->charges()->create([
+                'customer' => $customer['id'],
+                'currency' => 'USD',
+                'amount' => \Cart::instance('cart')->total() + 20,
+            ]);
+
+            if ($charge['status'] == 'succeeded') {
+                $this->makeTransaction($user, $order, 'card', 'approved');
+            } else {
+                $this->makeTransaction($user, $order, 'card', 'canceled');
+                return response()->json('something error');
+            }
+        }
+    }
+
+    public function createOrder($user)
+    {
+
+        $order = Order::create(['user_id' => $user->id, 'address_id' => $user->defaultAddress->first()->id, 'subTotal' => \Cart::instance('cart')->subtotal(), 'shipping' => 20, 'total' => \Cart::instance('cart')->subtotal() + 20,]);
+        foreach (\Cart::instance('cart')->content() as $item) {
+            $product = Product::findOrFail($item->id);
+            $product->update(['stock' => $product->stock - $item->quantity]);
+            OrderProduct::create(['order_id' => $order->id, 'product_id' => $item->id, 'quantity' => $item->qty, 'total' => $item->total]);
+        }
+        return $order;
+    }
+    public function makeTransaction($user, $order, $method, $status)
+    {
+
+        Transaction::create(['user_id' => $user->id, 'order_id' => $order->id, 'method' => $method, 'status' => $status]);
+        $this->dispatchBrowserEvent('alert', [
+            'type' => 'success',
+            'icon' => 'success',
+            'message' => "Orded created successfully (total: {$order->total})",
+        ]);
+        \Cart::instance('cart')->destroy();
+        \Cart::instance('cart')->deleteStoredCart($user->email);
     }
 }

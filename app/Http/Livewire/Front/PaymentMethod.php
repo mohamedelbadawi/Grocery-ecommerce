@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Front;
 
+use App\Jobs\OrderNotificationJob;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -53,8 +54,9 @@ class PaymentMethod extends Component
 
         $user = auth()->user();
         if ($this->paymentMethod == 'cash') {
-            $this->createOrder('cash');
-
+            $order = $this->createOrder('cash');
+            $orderData = ['order_id' => $order->id, 'user_name' => auth()->user()->name, 'address' => auth()->user()->defaultAddress->first()->id, 'total' => $order->total];
+            OrderNotificationJob::dispatch($orderData);
             return redirect()->route('home');
         } else if ($this->paymentMethod == 'card') {
 
@@ -90,6 +92,8 @@ class PaymentMethod extends Component
                     'message' => "Orded can't created right now",
                 ]);
             }
+            $orderData = ['order_id' => $order->id, 'user_name' => auth()->user()->name, 'address' => auth()->user()->defaultAddress->first()->id, 'total' => $order->total];
+            OrderNotificationJob::dispatch($orderData);
             return redirect()->route('home');
         }
     }

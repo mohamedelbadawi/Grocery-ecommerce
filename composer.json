@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cartalyst/stripe-laravel": "^13.0",
         "fakerphp/faker": "^1.9.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -20,8 +21,7 @@
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
         "mcamara/laravel-localization": "^1.7",
-        "spatie/laravel-translatable": "^4.6",
-        "cartalyst/stripe-laravel": "^13.0"
+        "spatie/laravel-translatable": "^4.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
