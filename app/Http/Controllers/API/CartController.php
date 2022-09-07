@@ -16,6 +16,7 @@ class CartController extends Controller
     {
         $authUser = Auth::user();
         $cart = \Cart::instance('cart')->content();
+        
         return  CartResource::make($cart);
     }
     public function addProduct(Request $request)
