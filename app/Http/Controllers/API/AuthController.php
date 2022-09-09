@@ -18,7 +18,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8'
+            'password' => 'required|string|min:8',
+            'phone' => 'required|numeric|min:8|max:11',
         ]);
 
         if ($validator->fails()) {
@@ -28,13 +29,14 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer',]);
+            ->json(['name' => $user->name, 'email' => $user->email, 'phone' => $user->phone, 'access_token' => $token, 'token_type' => 'Bearer',]);
     }
     public function login(Request $request)
     {
@@ -48,7 +50,12 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
-            ->json(['message' => 'Hi ' . $user->name . ', welcome to home', 'access_token' => $token, 'token_type' => 'Bearer',]);
+            ->json(
+                [
+                    'message' => 'Hi ' . $user->name . ', welcome to home', 'access_token' => $token, 'token_type' => 'Bearer',
+                    'name' => $user->name, 'email' => $user->email, 'phone' => $user->phone
+                ]
+            );
     }
     public function updatePassword(Request $request)
     {
