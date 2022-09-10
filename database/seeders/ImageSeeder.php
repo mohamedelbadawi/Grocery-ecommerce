@@ -15,11 +15,9 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        $products = Product::all()->pluck('id');
-        foreach ($products as $id) {
-            for ($i = 0; $i < 4; $i++) {
-                Image::create(['image' => 'assets/products/product-' . rand(1, 8) . '.png','product_id'=>$id]);
-            }
+        $products = Product::all();
+        foreach ($products as $product) {
+            Image::create(['image' => 'assets/products/' . str_replace(' ', '', $product->name) .  '.png', 'product_id' => $product->id]);
         }
     }
 }

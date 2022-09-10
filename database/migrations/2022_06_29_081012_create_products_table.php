@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->text('description');
             $table->integer('stock');
+            $table->decimal('rate');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->boolean('featured')->default(false);
             $table->boolean('status')->default(false);
