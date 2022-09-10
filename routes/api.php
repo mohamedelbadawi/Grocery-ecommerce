@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'localization'])->group(function () {
     Route::post('user/password/update', [AuthController::class, 'updatePassword']);
     Route::post('product/{id}/rate', [ProductController::class, 'rateProduct']);
     Route::get('checkout', [OrderController::class, 'checkout']);
+    Route::post('/updateProfile', [AuthController::class, 'updateProfile']);
 });
 
 

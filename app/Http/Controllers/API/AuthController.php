@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-        'name' => $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone
@@ -94,5 +95,26 @@ class AuthController extends Controller
         return [
             'message' => 'You have successfully logged out and the token was successfully deleted'
         ];
+    }
+
+    public function updateProfile(Request $request)
+
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'phone' => 'required|min:8|max:11',
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+            $user = Auth::user();
+            $user->update(['name' => $request->name, 'phone' => $request->phone]);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+
+
+        return response()->json(['message' => 'updated Successfully']);
     }
 }
