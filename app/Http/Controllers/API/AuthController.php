@@ -17,14 +17,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255  ',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'phone' => 'required|min:8|max:11',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(), 400);
         }
 
         $user = User::create([
@@ -67,7 +67,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json($validator->errors(), 400);
         }
         $user = Auth::user();
         $hashedPassword = $user->password;
@@ -83,7 +83,7 @@ class AuthController extends Controller
                 return response()->json(['message' => 'new password can\'t be like old password']);
             }
         } else {
-            return response()->json(['message' => 'the old password is wrong']);
+            return response()->json(['message' => 'the old password is wrong'], 400);
         }
     }
 
@@ -111,7 +111,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $user->update(['name' => $request->name, 'phone' => $request->phone]);
         } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()]);
+            return response()->json(['message' => $e->getMessage()], 400);
         }
 
 
