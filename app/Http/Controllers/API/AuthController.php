@@ -41,6 +41,15 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()
                 ->json(['message' => 'Data you entered not match our records '], 401);
